@@ -24,6 +24,7 @@
     left: 50%;
     transform: translate(-50%,-50%);
     font-size:20px;
+    line-height: 45px;
 }
 
 .menu_container{
@@ -145,3 +146,20 @@
     }
  }
  
+
+ /* 글자 hover => 밑줄 생성 */
+ .underline {
+    background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 0.8s;
+    color: #000;
+    cursor: pointer;
+  }
+
+  .underline.yellow {
+    background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+  }
+  .underline:hover {
+    background-size: 100% 100%;
+  }

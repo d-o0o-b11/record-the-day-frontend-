@@ -3,7 +3,7 @@ import "./MoHeader.css"
 import menu_btn from "../../img/menu_btn.png"
 import cancel_btn from "../../img/cancel_btn.png"
 import logo from "../../img/logo.png"
-// import {Link} from "react-router-dom";
+import {Link} from "react-router-dom";
   
 const MoHeader = () => {
 
@@ -26,11 +26,26 @@ const MoHeader = () => {
                 <div className='menu_sidebar'>
                   <img src={cancel_btn} onClick={()=>(setToggleMenu(!toggleMenu))} className="cancel_btn"/>
                   <span className='area_desc'>
-                    <h2>Main</h2>
-                    <h2>To do List</h2>
-                    <h2>Note</h2>
-                    <h2>Login</h2>
-                    <h2>Sing Up</h2>
+                  <Link to="/" className="link_color" onClick={()=>(setToggleMenu(!toggleMenu))}>
+                    <h2 className='yellow underline'>Main</h2>
+                  </Link>
+
+                  <Link to="/ToDoList" className="link_color" onClick={()=>(setToggleMenu(!toggleMenu))}>
+                    <h2 className='yellow underline'>To do List</h2>
+                  </Link>
+
+                  <Link to="/Note" className="link_color" onClick={()=>(setToggleMenu(!toggleMenu))}>
+                    <h2 className='yellow underline'>Note</h2>
+                  </Link>
+
+                  <Link to="/Login" className="link_color" onClick={()=>(setToggleMenu(!toggleMenu))}>
+                    <h2 className='yellow underline'>Login</h2>
+                  </Link>
+
+                  <Link to="/SignUp" className="link_color" onClick={()=>(setToggleMenu(!toggleMenu))}>
+                    <h2 className='yellow underline'>Sing Up</h2>
+                  </Link>
+
                   </span>
                 </div>
 

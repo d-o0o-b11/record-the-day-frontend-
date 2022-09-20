@@ -27,3 +27,8 @@ body{
 .container{
     padding: 0 10px 0 10px;
 }
+
+.link_color{
+    text-decoration-line: none;
+    color: black;
+}
