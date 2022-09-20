@@ -1,52 +1,46 @@
 import React,{useState} from 'react';
 import "./MoHeader.css"
 import menu_btn from "../../img/menu_btn.png"
+import cancel_btn from "../../img/cancel_btn.png"
+import logo from "../../img/logo.png"
 // import {Link} from "react-router-dom";
   
 const MoHeader = () => {
 
     const [toggleMenu, setToggleMenu] = useState(false)
-    // const [toggleBar, setToggleBar] = useState(true)
-
-    // const toggleChange = () => {
-    //     setToggleMenu(!toggleMenu)
-    //     setToggleBar(!toggleBar)
-    //     console.log(toggleMenu)
-    //   }
-    
 
 
   return(
       <div className="mo_header">
         <img src={menu_btn} onClick={()=>(setToggleMenu(!toggleMenu))} className="ham_menu"/>
+        <div className='mo_logo_po'>
+          <img src={logo} className="mo_logo"/>
+        </div>
 
         { toggleMenu &&
-        <>
-        
-          <div className="emphasized">
-            
-              <div className="label sidebar" >
-
-                    {/* <Link to="/stitle" onClick={toggleChange} style={{ textDecoration: 'none', color:'black' }}>
-                      <h5 className="st mm">게시판</h5>
-                    </Link>
-
+          <>
           
-                    <Link to="/chat" onClick={toggleChange} style={{ textDecoration: 'none', color:'black' }}>
-                      <h5 className="st mm">채팅</h5>
-                    </Link>
+            <div className='menu_container'>
+              <div className='check'>
 
+                <div className='menu_sidebar'>
+                  <img src={cancel_btn} onClick={()=>(setToggleMenu(!toggleMenu))} className="cancel_btn"/>
+                  <span className='area_desc'>
+                    <h2>Main</h2>
+                    <h2>To do List</h2>
+                    <h2>Note</h2>
+                    <h2>Login</h2>
+                    <h2>Sing Up</h2>
+                  </span>
+                </div>
 
-                    <Link to="/Annview" onClick={toggleChange} style={{ textDecoration: 'none', color:'black' }}>
-                      <h5 className="st mm">공지사항</h5>
-                    </Link> */}
-                    <img src={menu_btn} onClick={()=>(setToggleMenu(!toggleMenu))} style={{cursor:"pointer"}}/>
-              <h1>fdfd</h1>
-              <h2>dfd</h2>
-                
-                
+                <div className='menu_lo_frame'>
+                  <img src={logo} className="menu_logo"/>
+                </div>
+
+              </div>
             </div>
-          </div>
+
           </>
         }
       </div>
