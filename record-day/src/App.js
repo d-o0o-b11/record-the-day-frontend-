@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import {Container} from "react-bootstrap";
+import { BrowserRouter, Routes, Route  } from "react-router-dom";
+import React, { useState } from "react";
+import { Input,Row, Col  } from "antd"
 import './App.css';
+import Header from "./Main/Header/Header"
+import Fin_Main from "./Main/FIn_Main"
+import Main from "./Main/Main"
 
-function App() {
+const App = ()=>{
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Fin_Main/>
+      <Main/>
     </div>
   );
+
 }
 
 export default App;

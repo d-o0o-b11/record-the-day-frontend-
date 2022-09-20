@@ -1,0 +1,29 @@
+
+body{
+    background-color: #E4E0D5;
+    margin: 0;
+    padding: 0;
+}
+
+.header_body{
+    height: 160px;
+    padding: 10px 50px 50px 50px;
+    /* display: flex; */
+}
+
+.menu_font{
+    font-size: 32px;
+    margin: 50px;
+}
+
+.flex-end{
+    display: flex; margin: 0 5px;  float: right;
+}
+
+.menu_frame{
+    margin: 0 auto;
+}
+
+.container{
+    padding: 0 10px 0 10px;
+}
