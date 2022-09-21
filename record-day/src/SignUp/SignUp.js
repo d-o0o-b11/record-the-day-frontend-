@@ -7,17 +7,18 @@ const SignUp = () =>{
     const [account, setAccount] = useState({
         id: "",
         password: "",
-      });
+        nickname:"",
+    });
     
       //input에 입력될 때마다 account state값 변경되게 하는 함수
-      const onChangeAccount = (e) => {
+    const onChangeAccount = (e) => {
         setAccount({
-          ...account,
-          [e.target.name]: e.target.value,
+            ...account,
+            [e.target.name]: e.target.value,
         });
-      };
+    };
 
-      console.log(account)
+    //   console.log(account)
 
 
     return(
