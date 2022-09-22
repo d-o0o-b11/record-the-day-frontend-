@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./Login.css"
 import icon5 from "../img/icon5.png"
+import axios from "axios"
 
 const Login = () =>{
     const [account, setAccount] = useState({
@@ -15,6 +16,15 @@ const Login = () =>{
             [e.target.name]: e.target.value,
         });
     };
+
+    axios({
+        method:'post',
+        url:'/account/login',
+        data:{
+            userid :account.id,
+            password:account.password
+        }
+    })
 
     console.log(account)
 
