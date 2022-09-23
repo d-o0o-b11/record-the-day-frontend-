@@ -15,6 +15,17 @@ const ToDoList = () =>{
                 });
         },[]);
 
+    const [todolist, SetToList] = useState();
+
+    const onChangeAccount = (e) => {
+        SetToList(e.target.value);
+        console.log(todolist)
+    };
+    
+    // const add_list = () => {
+        
+    // }
+
     return(
         <>
          {/* <ul>
@@ -27,6 +38,14 @@ const ToDoList = () =>{
                 </div>
 
                 <h1>To Do List</h1>
+
+                <div>
+                    <input 
+                        className="list_input" 
+                        placeholder="추가 일정"
+                        id="list"
+                        onChange={onChangeAccount}/>
+                </div>
 
                 <button>
                     <h3>일정 추가</h3>

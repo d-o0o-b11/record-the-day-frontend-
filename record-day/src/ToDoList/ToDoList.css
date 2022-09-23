@@ -52,10 +52,23 @@
     width: 30px;
 }
 
+.list_input{
+    width: 300px;
+    height: 46px;
+    font-size: 1.17em;
+    font-family: "gmarket", sans-serif, "Times New Roman", serif;
+    padding: 0 0 0 10px;
+}
+
+
 /* phone */
 @media screen and (max-width:700px) {
     .todolist_icon_marg{
         margin: 60px 0 10px 0;
+    }
+    .insert_list{
+        width: 345px;
+        grid-template-columns: 23px 250px;
     }
 }
 
