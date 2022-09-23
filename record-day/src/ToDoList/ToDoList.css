@@ -1,0 +1,67 @@
+.todolist_frame{
+    width: 100%;
+    height: 500px;
+    /* background-color: darkseagreen; */
+    text-align: center;
+}
+
+.todolist_icon_marg{
+    margin: 10px 0 10px 0;
+}
+
+.todolist_frame button{
+    width: 100px;
+    height: 100px;
+    background-color: #6085AF;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 8px;
+    border:none;
+    cursor: pointer;
+}
+
+.todolist_frame button :hover{
+    color: white;
+    font-size: 1.4em;
+}
+
+.insert_list{
+    width: 600px;
+    height: 95px;
+    border-radius: 50px;
+    border: 0;
+    outline: none;
+    background-color: #C7AD92;
+    padding: 0 auto;
+    margin: 0 auto;
+    margin-top: 60px;
+
+    display: grid;
+    grid-template-columns: 35px 500px;
+    grid-template-rows: auto;
+    grid-gap: 50px;
+}
+
+.insert_list h3{
+    text-align: left;
+    margin-top: 33px;
+}
+
+.insert_list input{
+    margin-left: 30px;
+    width: 30px;
+}
+
+/* phone */
+@media screen and (max-width:700px) {
+    .todolist_icon_marg{
+        margin: 60px 0 10px 0;
+    }
+}
+
+/* Teb */
+@media screen and (max-width:1300px) {
+    .todolist_icon_marg{
+        margin: 160px 0 10px 0;
+    }
+}

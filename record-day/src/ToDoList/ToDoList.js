@@ -1,5 +1,6 @@
 import React ,{useState, useEffect} from "react";
 import "./ToDoList.css"
+import icon8 from "../img/icon8.png"
 
 const ToDoList = () =>{
 
@@ -16,9 +17,26 @@ const ToDoList = () =>{
 
     return(
         <>
-         <ul>
+         {/* <ul>
           {message.map((v,idx)=><li key={`${idx}-${v}`}>{v}</li>)}
-        </ul>
+        </ul> */}
+
+            <div className="todolist_frame">
+                <div className="todolist_icon_marg">
+                    <img src={icon8}/>
+                </div>
+
+                <h1>To Do List</h1>
+
+                <button>
+                    <h3>일정 추가</h3>
+                </button>
+
+                <div className="insert_list">
+                    <input type="checkbox"/>
+                    <h3>오늘 방청소하자</h3>
+                </div>
+            </div>    
         </>
     )
 }
