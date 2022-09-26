@@ -9,7 +9,7 @@
     margin: 10px 0 10px 0;
 }
 
-.todolist_frame button{
+.main_listbtn{
     width: 100px;
     height: 100px;
     background-color: #6085AF;
@@ -20,7 +20,7 @@
     cursor: pointer;
 }
 
-.todolist_frame button :hover{
+.main_listbtn :hover{
     color: white;
     font-size: 1.4em;
 }
@@ -36,21 +36,28 @@
     margin: 0 auto;
     margin-top: 60px;
 
-    display: grid;
+    /* display: grid;
     grid-template-columns: 35px 500px;
     grid-template-rows: auto;
+    grid-gap: 50px; */
+}
+.content{
+    display: grid;
+    grid-template-columns: 35px 250px;
+    grid-template-rows: auto;
     grid-gap: 50px;
+    padding-top: 14px;
 }
-
-.insert_list h3{
+.content h3{
     text-align: left;
-    margin-top: 33px;
+    /* margin-top: 33px; */
 }
 
-.insert_list input{
+.content img{
     margin-left: 30px;
     width: 30px;
 }
+
 
 .list_input{
     width: 300px;

@@ -6,6 +6,7 @@ import Main from "./Main/Main"
 import Login from "./Login/Login"
 import SignUp from "./SignUp/SignUp"
 import ToDoList from "./ToDoList/ToDoList"
+import Template from "./ToDoList/Template"
 import Note from "./Note/Note"
 
 import {Mobile, Pc} from "../src/Media/MediaQuery"
@@ -36,7 +37,7 @@ const App = ()=>{
             <Route path="/SignUp" element={<SignUp/>}/>
 
             {/* ToDoList */}
-            <Route path="/ToDoList" element={<ToDoList/>}/>
+            <Route path="/ToDoList" element={<Template/>}/>
 
             {/* Note */}
             <Route path="/Note" element={<Note/>}/>

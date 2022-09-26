@@ -1,0 +1,17 @@
+.checked_list .todotext{
+    color: #6c567b;
+    text-decoration: line-through;
+    cursor: pointer;
+    opacity: 0.6;
+    /* opacity = 글씨 흐릿 , line-through = 취소선 */
+}
+
+
+.checkbtn{
+    width: 40px;
+    height: 30px;
+}
+
+.margin_btn{
+    margin-top: 15px;
+}
