@@ -4,20 +4,15 @@ import "./ToDoItem.css"
 import "./Template.css"
 import check_f from "../img/check(false).png"
 import check_t from "../img/check(true).png"
+import cancel_btn from "../img/cancel_btn.png"
 
-const ToDoItem = ({todo, onCheckToggle})=>{
+const ToDoItem = ({todo, onCheckToggle, onRemove})=>{
     const {id, text, checked} = todo;
     // console.log(onCheckToggle(1));
     return(
         <> 
         <div className="insert_list">
-            {/* <input type="checkbox"/> */}
             <div className={`content ${checked ? 'checked_list' : ""}`}>
-                {/* {checked? 
-                    <input type="checkbox" checked="y"/> : 
-                    <input type="checkbox" checked="n"/> 
-                } */}
-                {/* <span>{checked}</span> */}
                 <div className="margin_btn">
                     {checked? 
                         <img src={check_t} 
@@ -35,8 +30,7 @@ const ToDoItem = ({todo, onCheckToggle})=>{
                     }
                 </div>
                 <div className="todotext"><h3>{text}</h3></div>
-                {/* <h3>{text}</h3> */}
-                {/* <div className="todotext">{text}</div> */}
+                <div className="cancel"><img src={cancel_btn} onClick={()=>{onRemove(id)}}/></div>
             </div>
         </div>
         </>

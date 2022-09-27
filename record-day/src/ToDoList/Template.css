@@ -42,20 +42,31 @@
     grid-gap: 50px; */
 }
 .content{
-    display: grid;
+    /* display: grid;
     grid-template-columns: 35px 250px;
     grid-template-rows: auto;
     grid-gap: 50px;
+    padding-top: 14px; */
+    display: grid;
+    grid-template-columns: 35px 430px 30px;
+    grid-template-rows: auto;
+    grid-gap: 37px;
     padding-top: 14px;
+    
 }
 .content h3{
     text-align: left;
     /* margin-top: 33px; */
 }
 
-.content img{
+.margin_btn img{
     margin-left: 30px;
     width: 30px;
+}
+
+.cancel img{
+    width: 30px;
+    margin-top:15px;
 }
 
 
@@ -76,6 +87,10 @@
     .insert_list{
         width: 345px;
         grid-template-columns: 23px 250px;
+    }
+    .content{
+        grid-template-columns: 35px 191px 30px;
+        grid-gap: 37px;
     }
 }
 

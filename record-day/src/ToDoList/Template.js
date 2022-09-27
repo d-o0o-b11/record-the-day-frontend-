@@ -75,6 +75,10 @@ const Template = () =>{
         )))
     }
 
+    const onRemove = (id) =>{
+        setTodos(todos => todos.filter(todo=>todo.id !== id))
+    }
+
     return(
         <>
 
@@ -86,24 +90,13 @@ const Template = () =>{
                 <h1>To Do List</h1>
 
                 {insertToggle && <ToDoInsert onInsertToggle={onInsertToggle} onInsertTodo={onInsertTodo}/>}
-                {/* <div>
-                    <input 
-                        className="list_input" 
-                        placeholder="추가 일정"
-                        id="list"
-                        onChange={onChangeAccount}/>
-                </div> */}
 
                 <button onClick={onInsertToggle} className="main_listbtn">
                     <h3>일정 추가</h3>
                 </button>
 
-                {/* <div className="insert_list">
-                    <input type="checkbox"/>
-                    <h3>오늘 방청소하자</h3>
-                    <ToDoList/>
-                </div> */}
-                <ToDoList todos={todos} onCheckToggle={onCheckToggle}/>
+                <h3>오늘의 할 일 - {todos.length}</h3>
+                <ToDoList todos={todos} onCheckToggle={onCheckToggle} onRemove={onRemove}/>
             </div>    
         </>
     )
