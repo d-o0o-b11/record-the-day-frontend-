@@ -1,6 +1,6 @@
 .todolist_frame{
     width: 100%;
-    height: 500px;
+    /* height: 500px; */
     /* background-color: darkseagreen; */
     text-align: center;
 }
@@ -79,6 +79,13 @@
 }
 
 
+/* Teb */
+@media screen and (max-width:1300px) {
+    .todolist_icon_marg{
+        margin: 160px 0 10px 0;
+    }
+}
+
 /* phone */
 @media screen and (max-width:700px) {
     .todolist_icon_marg{
@@ -91,12 +98,5 @@
     .content{
         grid-template-columns: 35px 191px 30px;
         grid-gap: 37px;
-    }
-}
-
-/* Teb */
-@media screen and (max-width:1300px) {
-    .todolist_icon_marg{
-        margin: 160px 0 10px 0;
     }
 }

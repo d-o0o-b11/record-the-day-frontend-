@@ -10,6 +10,7 @@ import Template from "./ToDoList/Template"
 import Note from "./Note/Note"
 
 import {Mobile, Pc} from "../src/Media/MediaQuery"
+import NoteInsert from "./Note/NoteInsert";
 
 
 const App = ()=>{
@@ -41,6 +42,8 @@ const App = ()=>{
 
             {/* Note */}
             <Route path="/Note" element={<Note/>}/>
+
+            <Route path="/InsertWrite" element={<NoteInsert/>} />
         </Routes>
     </BrowserRouter>
   );

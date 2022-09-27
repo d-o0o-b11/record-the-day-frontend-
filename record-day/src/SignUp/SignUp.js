@@ -2,11 +2,12 @@ import React, {useState} from "react";
 import "./SignUp.css"
 import icon6 from "../img/icon6.png"
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () =>{
 
     const [account, setAccount] = useState({
-        id: "",
+        email: "",
         password: "",
         nickname:"",
     });
@@ -20,23 +21,40 @@ const SignUp = () =>{
     };
 
     //   console.log(account)
-
+    const navigate = useNavigate();
     const submit = ()=>{
-        axios({
-            method:'post',
-            url:'/account/register',
-            data:{
-                userid :account.id,
-                password:account.password,
-                nickname:account.nickname
-            }
-        })
-        .then((Response)=>{
-            console.log(Response.data);
-          })
-          .catch((error)=>{
-            console.log(error);
-          });
+        
+
+        if(account.email===""){
+            alert("이메일을 입력해주세요")
+        }
+        else if(account.password===""){
+            alert("비밀번호를 입력해주세요")
+        }
+        else if(account.nickname===""){
+            alert("닉네임을 입력해주세요")
+        }
+        else{
+            axios({
+                method:'post',
+                url:'https://cloudwi.herokuapp.com/member',
+                data:{
+                    email :account.email,
+                    password:account.password,
+                    nickname:account.nickname
+                }
+            })
+            .then((Response)=>{
+                console.log(Response.data);
+                alert("회원가입이 완료되었습니다.");
+                navigate('/');
+              })
+              .catch((error)=>{
+                // alert(error.message);
+                console.log(error)
+              });
+        }
+
     }
 
 
@@ -50,9 +68,9 @@ const SignUp = () =>{
                 
                 <div>
                     <input
-                        id="id"
-                        name="id"
-                        placeholder="ID"
+                        id="email"
+                        name="email"
+                        placeholder="Email"
                         onChange={onChangeAccount}
                     />
                 </div>
@@ -73,7 +91,9 @@ const SignUp = () =>{
                         onChange={onChangeAccount}
                     />
                 </div>
-
+                
+                <h6>비밀번호</h6>
+                <h6 style={{color:"red"}}>* 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 6자 ~ 20자여야 합니다.</h6>
                 <button onClick={submit}>
                     <h3>SignUp</h3>
                 </button>

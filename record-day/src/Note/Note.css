@@ -1,0 +1,77 @@
+.note_frame{
+    text-align: center;
+    margin: 0 100px 0 100px;
+}
+
+.note_icon_marg{
+    margin: 10px 0 10px 0;
+}
+
+.note_listbtn{
+    width: 100px;
+    height: 100px;
+    background-color: #FFC91D;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 8px;
+    border:none;
+    cursor: pointer;
+}
+
+.note_listbtn :hover{
+    color: white;
+    font-size: 1.4em;
+}
+
+.notelist_frame{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 30px;
+    padding-top: 50px;
+    place-items: center;
+    height: 500px;
+}
+
+.note_list{
+    width: 315px;
+    height: 310px;
+    background: #FFFFFF;
+    border: 3px solid #000000;
+    border-radius: 50px;
+    text-align: center;
+}
+
+/* Teb */
+@media screen and (max-width:1300px) {
+    .note_frame{
+        margin: 0 10px 0 10px;
+    }
+    .note_icon_marg{
+        margin: 160px 0 10px 0;
+    }
+    .note_list{
+        width: 235px;
+        height: 230px;
+    }
+}
+
+/* phone */
+@media screen and (max-width:700px) {
+    .note_frame{
+        margin: 0 30px 0 30px;
+    }
+    .note_icon_marg{
+        margin: 60px 0 10px 0;
+    }
+    .notelist_frame{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-gap: 15px;
+    }
+    .note_list{
+        width: 330px;
+        height: 110px;
+    }
+}

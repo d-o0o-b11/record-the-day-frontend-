@@ -8,16 +8,32 @@ import reportWebVitals from './reportWebVitals';
 // import { Provider } from 'react-redux';
 // import { CookiesProvider } from 'react-cookie';
 
+import { BrowserRouter } from 'react-router-dom';
+import { applyMiddleware , legacy_createStore as createStore } from 'redux';
+import rootReducter from './modules';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { CookiesProvider } from 'react-cookie';
+
+
+const store = createStore(rootReducter, composeWithDevTools(applyMiddleware(thunk)));
+// console.log(store.getState());
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  // <React.StrictMode>
+  //     <App />
+  // </React.StrictMode>
+  
+ 
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <CookiesProvider>
+        <App/>
+      </CookiesProvider>
+    </Provider>
   </React.StrictMode>
-  // <CookiesProvider>
-  //       <Provider store={store}>
-  //           <App />
-  //       </Provider>
-  // </CookiesProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

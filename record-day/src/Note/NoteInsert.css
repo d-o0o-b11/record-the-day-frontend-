@@ -1,0 +1,41 @@
+.write_frame{
+    text-align: center;
+    margin: 0 100px 0 100px;
+}
+
+.write_icon_marg{
+    margin: 10px 0 10px 0;
+}
+
+.write_input{
+    width: 95%;
+    height: 50px;
+    font-size: 1.17em;
+    font-family: "gmarket", sans-serif, "Times New Roman", serif;
+    padding: 0 0 0 10px;
+    border-radius: 10px;
+}
+
+.quill_frame{
+    margin: 0 100px 0 100px;
+}
+
+/* Teb */
+@media screen and (max-width:1300px) {
+    .write_icon_marg{
+        margin: 160px 0 10px 0;
+    }
+}
+
+/* phone */
+@media screen and (max-width:700px) {
+    .write_frame{
+        margin: 0 10px 0 10px;
+    }
+    .write_icon_marg{
+        margin: 60px 0 10px 0;
+    }
+    .quill_frame{
+        margin: 0 10px 0 10px;
+    }
+}
