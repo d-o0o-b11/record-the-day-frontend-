@@ -8,6 +8,7 @@
 
 기술 스택
 > Frontend - React
+> 
 > Backend - Spring Boot
 
 기능 소개
