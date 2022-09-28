@@ -4,6 +4,7 @@ import menu_btn from "../../img/menu_btn.png"
 import cancel_btn from "../../img/cancel_btn.png"
 import logo from "../../img/logo.png"
 import {Link} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from "react-redux";
 import { getCookie, removeCookie } from "../../util/cookie";
@@ -16,10 +17,12 @@ const MoHeader = () => {
     const uname = getCookie('username');
     const isLogin = useSelector(state=>state.Logincheck.isLogin);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const logoutClick = () =>{
         removeCookie('username');
         dispatch(setLogout());
+        navigate('/');
     }
 
     useEffect(()=>{},[isLogin]);

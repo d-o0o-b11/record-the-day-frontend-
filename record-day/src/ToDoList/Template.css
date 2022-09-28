@@ -25,6 +25,16 @@
     font-size: 1.4em;
 }
 
+.todolist_frame2{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 30px;
+    padding-top: 30px;
+    place-items: center;
+    height: 100px;
+}
+
 .insert_list{
     width: 600px;
     height: 95px;
@@ -34,7 +44,7 @@
     background-color: #C7AD92;
     padding: 0 auto;
     margin: 0 auto;
-    margin-top: 60px;
+    /* margin-top: 60px; */
 
     /* display: grid;
     grid-template-columns: 35px 500px;

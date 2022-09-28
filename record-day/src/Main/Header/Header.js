@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import "./Header.css"
 import {Link} from "react-router-dom";
 import logo from "../../img/logo.png"
+import { useNavigate } from 'react-router-dom';
 
 
 import { useDispatch, useSelector } from "react-redux";
@@ -14,9 +15,12 @@ const Header = () =>{
     const isLogin = useSelector(state=>state.Logincheck.isLogin);
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const logoutClick = () =>{
         removeCookie('username');
         dispatch(setLogout());
+        navigate('/');
     }
 
     useEffect(()=>{},[isLogin]);

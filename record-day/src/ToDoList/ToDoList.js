@@ -8,7 +8,7 @@ const ToDoList = ({todos, onCheckToggle, onRemove}) =>{
         <>
             <div>
                 {todos.map(todo=>(
-                    <ToDoItem todo={todo} ket={todo.id} onCheckToggle={onCheckToggle} onRemove={onRemove}/>
+                    <ToDoItem todo={todo} key={todo.id} onCheckToggle={onCheckToggle} onRemove={onRemove}/>
                 ))}
             </div>
         </>

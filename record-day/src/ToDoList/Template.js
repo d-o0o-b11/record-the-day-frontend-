@@ -3,21 +3,50 @@ import "./Template.css"
 import icon8 from "../img/icon8.png"
 import ToDoList from "./ToDoList";
 import ToDoInsert from "./ToDoInsert";
+import axios from "axios";
+import { getCookie, removeCookie } from "../util/cookie";
 
 
-let nextId =4;
+const PrintList = (url, token, count) => {
+    const [data, setData] = useState([]);
+    // const [count, setCount] = useState(0);
+    
+    
+    const ListUrl = () => {
+        axios({
+            method: 'get',
+            url: `${url}`,
+            headers: {
+                "X-AUTH-TOKEN": token
+            }
+        }).then((Response)=>{
+            console.log(Response.data)
+            setData(Response.data)   
+        }
+        ).catch((error)=>{
+            alert("실패하였습니다.")
+        })
+
+       
+    }
+    useEffect(() => { //한번만 실행
+        ListUrl();
+        console.log("실행11111111111111111111111111")
+    }, []);
+
+    useEffect(() => { //count 변할 때 마다 실행
+        ListUrl();
+        console.log("실행222222222222222")
+    }, [count]);
+
+    return data;
+  }
+
 const Template = () =>{
 
-    const [message, setMessage]=useState([]);
-        useEffect(()=>{
-            fetch("/ToDoList")
-                .then((res)=>{
-                return res.json();
-                })
-                .then((data)=>{
-                    setMessage(data);
-                });
-        },[]);
+    const token = getCookie('token');
+    const [count, setCount] = useState(0);
+    const data = PrintList(`https://cloudwi.herokuapp.com/todo`, token, count);
 
     const [todolist, SetToList] = useState();
 
@@ -33,38 +62,30 @@ const Template = () =>{
         // prev = 이전값
     } 
 
-    const [todos,setTodos]=useState([
-        {
-            id:1,
-            text:"할일 1",
-            checked : "true"
-        },
-        {
-            id:2,
-            text:"할일 2",
-            checked : "false"
-        },
-        {
-            id:3,
-            text:"할일 3",
-            checked : "false"
-        },
-    ])
+    const [todos,setTodos]=useState([])
 
     const onInsertTodo = (text)=>{
         if(text === ""){
             return alert('할 일을 입력해주세요')
         }
         else{
-            const todo={
-                id: nextId,
-                text,
-                checked: false
+
+            console.log(token)
+
+            axios({
+                method: 'post',
+                url: 'https://cloudwi.herokuapp.com/todo',
+                headers: {
+                    "X-AUTH-TOKEN": token
+                },
+                data: {
+                    content: text
+                },
+            })
+            .then((Response)=>{
+                setCount(count+1);
             }
-            setTodos(todos => todos.concat(todo));
-            nextId++;
-            // push함수 = 해당 배열 자체가 변경
-            // concat = 새 배열이 리턴이 되고 기존 배열은 변경 안됨
+            )
         }
     }
 
@@ -76,7 +97,21 @@ const Template = () =>{
     }
 
     const onRemove = (id) =>{
-        setTodos(todos => todos.filter(todo=>todo.id !== id))
+        // setTodos(todos => todos.filter(todo=>todo.id !== id))
+        axios({
+            method: 'delete',
+            url: 'https://cloudwi.herokuapp.com/todo',
+            headers: {
+                "X-AUTH-TOKEN": token
+            },
+            data: {
+                id: id
+            },
+        })
+        // .then((Response)=>{
+        //     PrintList(`https://cloudwi.herokuapp.com/todo`, token);
+        // }
+        // )
     }
 
     return(
@@ -95,8 +130,8 @@ const Template = () =>{
                     <h3>일정 추가</h3>
                 </button>
 
-                <h3>오늘의 할 일 - {todos.length}</h3>
-                <ToDoList todos={todos} onCheckToggle={onCheckToggle} onRemove={onRemove}/>
+                <h3>오늘의 할 일 - {data.length}</h3>
+                <ToDoList todos={data} onCheckToggle={onCheckToggle} onRemove={onRemove}/>
             </div>    
         </>
     )

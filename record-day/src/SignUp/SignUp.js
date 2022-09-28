@@ -47,7 +47,7 @@ const SignUp = () =>{
             .then((Response)=>{
                 console.log(Response.data);
                 alert("회원가입이 완료되었습니다.");
-                navigate('/');
+                navigate('/Login');
               })
               .catch((error)=>{
                 // alert(error.message);
