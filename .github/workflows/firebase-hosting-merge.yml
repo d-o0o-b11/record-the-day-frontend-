@@ -17,15 +17,10 @@ jobs:
         with:
           node-version: "16"
 
-      - name: Run pwd
-        run: pwd
-
       - name: Run npm install
         run: npm install
-        working-directory: ./record-day
 
       - run: npm run build
-        working-directory: ./record-day
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
