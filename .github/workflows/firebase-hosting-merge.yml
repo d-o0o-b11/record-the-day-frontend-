@@ -21,7 +21,7 @@ jobs:
         run: pwd
 
       - name: Run cd record-day
-        run: cd record-day
+        path: ./record-day
 
       - name: Run pwd
         run: pwd
