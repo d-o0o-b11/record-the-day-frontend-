@@ -28,6 +28,7 @@ const Login = () =>{
     const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+
     const login = (e) => {
 		e.preventDefault();
 
@@ -44,6 +45,7 @@ const Login = () =>{
 				password: account.password,
 			})
 			.then((res) => {
+                // localStorage.setItem('token2', res.data.token);
 					setCookie('token', res.data.token);// 쿠키에 토큰 저장
                     let expires = new Date();
                     //60분 더한 값으로 변경

@@ -22,6 +22,7 @@ const Header = () =>{
         dispatch(setLogout());
         navigate('/');
     }
+    // console.log(isLogin)
 
     useEffect(()=>{},[isLogin]);
 

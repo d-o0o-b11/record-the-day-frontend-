@@ -7,14 +7,14 @@ import check_t from "../img/check(true).png"
 import cancel_btn from "../img/cancel_btn.png"
 
 const ToDoItem = ({todo, onCheckToggle, onRemove})=>{
-    const {id, content, checked} = todo;
+    const {id, content, checkTodo} = todo;
     // console.log(onCheckToggle(1));
     return(
         <div className="todolist_frame2"> 
         <div className="insert_list">
-            <div className={`content ${checked ? 'checked_list' : ""}`}>
+            <div className={`content ${checkTodo ? 'checked_list' : ""}`}>
                 <div className="margin_btn">
-                    {checked? 
+                    {checkTodo? 
                         <img src={check_t} 
                             className="checkbtn"
                             onClick={()=>{

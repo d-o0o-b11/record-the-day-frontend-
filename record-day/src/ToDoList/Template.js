@@ -20,23 +20,22 @@ const PrintList = (url, token, count) => {
                 "X-AUTH-TOKEN": token
             }
         }).then((Response)=>{
-            console.log(Response.data)
+            // console.log(Response.data)
             setData(Response.data)   
         }
         ).catch((error)=>{
             alert("실패하였습니다.")
+            console.log(token)
         })
 
        
     }
     useEffect(() => { //한번만 실행
         ListUrl();
-        console.log("실행11111111111111111111111111")
     }, []);
 
     useEffect(() => { //count 변할 때 마다 실행
         ListUrl();
-        console.log("실행222222222222222")
     }, [count]);
 
     return data;
@@ -44,6 +43,7 @@ const PrintList = (url, token, count) => {
 
 const Template = () =>{
 
+    // const token2 = localStorage.getItem('token2')
     const token = getCookie('token');
     const [count, setCount] = useState(0);
     const data = PrintList(`https://cloudwi.herokuapp.com/todo`, token, count);
@@ -90,10 +90,25 @@ const Template = () =>{
     }
 
     const onCheckToggle = (id) =>{
-        setTodos(todos => todos.map(todo =>
-            (todo.id === id ? {...todo, checked: !todo.checked}:
-            todo
-        )))
+        // setTodos(todos => todos.map(todo =>
+        //     (todo.id === id ? {...todo, checked: !todo.checked}:
+        //     todo
+        // )))
+        axios({
+            method: 'put',
+            url: 'https://cloudwi.herokuapp.com/todo',
+            headers: {
+                "X-AUTH-TOKEN": token
+            },
+            data: {
+                id: id
+            },
+        }).then((Response)=>{
+            setCount(count+1);
+        }
+        ).catch((error)=>{
+            alert("실패하였습니다.")
+        })
     }
 
     const onRemove = (id) =>{
@@ -108,10 +123,13 @@ const Template = () =>{
                 id: id
             },
         })
-        // .then((Response)=>{
-        //     PrintList(`https://cloudwi.herokuapp.com/todo`, token);
-        // }
-        // )
+        .then((Response)=>{
+            console.log(token)
+            setCount(count+1);
+        }
+        ).catch((error)=>{
+            console.log(token)
+        })
     }
 
     return(
