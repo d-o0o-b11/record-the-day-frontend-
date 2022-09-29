@@ -34,7 +34,7 @@ const Main = () => {
         </svg>
 
         <div className="main_font_mg">
-          <h1 className="main_font">함께 중요한 사항을 필기해보세요</h1>
+          <h1 className="main_font">함께 중요한 사항을 필기해보세요!</h1>
 
           <h2>수업시간에 들은 내용들을 어떻게 정리하고 계신가요?</h2>
           <h2>여러군데에 나눠져 필기되어 있으시다면 이용해보세요</h2>
