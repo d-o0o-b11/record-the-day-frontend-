@@ -20,13 +20,8 @@ jobs:
       - name: Run pwd
         run: pwd
 
-      - name: Run cd record-day
-        path: ./record-day
-
-      - name: Run pwd
-        run: pwd
-
       - name: Run npm install
+        path: ./record-day
         run: npm install
 
       - run: npm run build
