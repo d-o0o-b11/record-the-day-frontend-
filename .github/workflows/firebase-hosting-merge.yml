@@ -17,10 +17,16 @@ jobs:
         with:
           node-version: "16"
 
-      - name: cd record-day
+      - name: Run pwd
+        run: pwd
+
+      - name: Run cd record-day
         run: cd record-day
 
-      - name: npm install
+      - name: Run pwd
+        run: pwd
+
+      - name: Run npm install
         run: npm install
 
       - run: npm run build
