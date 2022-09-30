@@ -29,7 +29,8 @@
 
 진행사항
 ```
-Login    - 90%
-SingUp   - 100%
-Todolist -90%
-Note  - 30%
+Login (90%)
+SingUp (100%)
+Todolist (90%)
+Note (30%)
+```
