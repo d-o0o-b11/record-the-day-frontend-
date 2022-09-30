@@ -16,8 +16,72 @@
     border-radius: 10px;
 }
 
-.quill_frame{
-    margin: 0 100px 0 100px;
+.import_frame{
+    display: grid;
+    grid-template-columns: 13% 1fr;
+}
+
+.import_margin{
+    padding: 16px 0;
+    text-align: left;
+}
+
+.importance_color input[type="radio"]{
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: #000000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.importance_color input[type="radio"]:nth-child(3){
+    background-color: #F5333E;
+}
+
+.importance_color input[type="radio"]:nth-child(5){
+    background-color: #FF9D16;
+}
+
+.importance_color input[type="radio"]:nth-child(7){
+    background-color: #FFD336;
+}
+
+.importance_color input[type="radio"]:nth-child(9){
+    background-color: #6FD44A;
+}
+
+.importance_color input[type="radio"]:nth-child(11){
+    background-color: #3FA8F5;
+}
+
+.importance_color input[type="radio"]:nth-child(13){
+    background-color: #5D6DBE;
+}
+
+.importance_color input[type="radio"]:nth-child(15){
+    background-color: #FF57DA;
+}
+
+.importance_color input[type="radio"]:checked{
+    
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+}
+
+.write_btn {
+    width: 100px;
+    height: 100px;
+    background-color: #977A5C;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.write_btn_wrapper{
+    margin: 85px 0;
 }
 
 /* Teb */
@@ -35,7 +99,5 @@
     .write_icon_marg{
         margin: 60px 0 10px 0;
     }
-    .quill_frame{
-        margin: 0 10px 0 10px;
-    }
+    
 }

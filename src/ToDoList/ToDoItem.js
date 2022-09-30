@@ -1,5 +1,4 @@
 import React from "react";
-import {MdCheckBox , MdCheckBoxOutlineBlank} from "react-icons/md"
 import "./ToDoItem.css"
 import "./Template.css"
 import check_f from "../img/check(false).png"
@@ -8,7 +7,7 @@ import cancel_btn from "../img/cancel_btn.png"
 
 const ToDoItem = ({todo, onCheckToggle, onRemove})=>{
     const {id, content, checkTodo} = todo;
-    // console.log(onCheckToggle(1));
+
     return(
         <div className="todolist_frame2"> 
         <div className="insert_list">

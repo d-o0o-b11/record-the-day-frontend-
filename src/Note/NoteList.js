@@ -1,20 +1,20 @@
 import React from "react";
-import ToDoItem from "./ToDoItem";
+import NoteItem from "./NoteItem";
 
-const ToDoList = ({todos, onCheckToggle, onRemove}) =>{
+const NoteList = ({notes, onRemove}) =>{
 
     //check를 누르면 정렬이 되지않은 check한 list가 제일 밑으로 가도록 정렬되어있다.
     //해결 => 프론트에서 axios.get data를 sort한 후 뿌리기로 하였다.
     //오름차순
-    todos.sort(function(a,b){
+    notes.sort(function(a,b){
         return a["id"]-b["id"];
     })
 
     return(
         <>
             <div>
-                {todos.map(todo=>(
-                    <ToDoItem todo={todo} key={todo.id} onCheckToggle={onCheckToggle} onRemove={onRemove}/>
+                {notes.map(note=>(
+                    <NoteItem notes={note} key={note.id} onRemove={onRemove}/>
                 ))}
             </div>
         </>
@@ -22,4 +22,4 @@ const ToDoList = ({todos, onCheckToggle, onRemove}) =>{
 }
 
 
-export default ToDoList
+export default NoteList

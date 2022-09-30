@@ -9,8 +9,6 @@ import { getCookie, removeCookie } from "../util/cookie";
 
 const PrintList = (url, token, count) => {
     const [data, setData] = useState([]);
-    // const [count, setCount] = useState(0);
-    
     
     const ListUrl = () => {
         axios({
@@ -20,12 +18,10 @@ const PrintList = (url, token, count) => {
                 "X-AUTH-TOKEN": token
             }
         }).then((Response)=>{
-            console.log(Response.data)
             setData(Response.data)   
         }
         ).catch((error)=>{
             alert("실패하였습니다.")
-            console.log(token)
         })
 
        
@@ -43,26 +39,17 @@ const PrintList = (url, token, count) => {
 
 const Template = () =>{
 
-    // const token2 = localStorage.getItem('token2')
     const token = getCookie('token');
     const [count, setCount] = useState(0);
     const data = PrintList(`https://cloudwi.herokuapp.com/todo`, token, count);
 
-    const [todolist, SetToList] = useState();
 
-    const onChangeAccount = (e) => {
-        SetToList(e.target.value);
-        console.log(todolist)
-    };
-    
     const [insertToggle, setInertToggle] = useState(false);
 
     const onInsertToggle = ()=>{
         setInertToggle(prev => !prev);
         // prev = 이전값
     } 
-
-    const [todos,setTodos]=useState([])
 
     const onInsertTodo = (text)=>{
         if(text === ""){
