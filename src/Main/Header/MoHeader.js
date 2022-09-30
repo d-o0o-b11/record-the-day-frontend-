@@ -25,6 +25,26 @@ const MoHeader = () => {
         navigate('/');
     }
 
+    const Need_Login_todo = () =>{
+      if(!isLogin){
+          alert("로그인 후 사용가능합니다.");
+          navigate('/Login');
+      }
+      else{
+          navigate('/ToDoList');
+      }
+  }
+
+  const Need_Login_note = () =>{
+      if(!isLogin){
+          alert("로그인 후 사용가능합니다.");
+          navigate('/Login');
+      }
+      else{
+          navigate('/Note');
+      }
+  }
+
     useEffect(()=>{},[isLogin]);
 
   return(
@@ -47,13 +67,13 @@ const MoHeader = () => {
                     <h2 className='yellow underline'>Main</h2>
                   </Link>
 
-                  <Link to="/ToDoList" className="link_color" onClick={()=>(setToggleMenu(!toggleMenu))}>
+                  <span to="/ToDoList" className="link_color" onClick={()=>{setToggleMenu(!toggleMenu); Need_Login_todo();}}>
                     <h2 className='yellow underline'>To do List</h2>
-                  </Link>
+                  </span>
 
-                  <Link to="/Note" className="link_color" onClick={()=>(setToggleMenu(!toggleMenu))}>
+                  <span to="/Note" className="link_color" onClick={()=>{setToggleMenu(!toggleMenu); Need_Login_note();}}>
                     <h2 className='yellow underline'>Note</h2>
-                  </Link>
+                  </span>
 
                   {isLogin &&
                     <>

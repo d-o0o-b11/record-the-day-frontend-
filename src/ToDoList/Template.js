@@ -20,7 +20,7 @@ const PrintList = (url, token, count) => {
                 "X-AUTH-TOKEN": token
             }
         }).then((Response)=>{
-            // console.log(Response.data)
+            console.log(Response.data)
             setData(Response.data)   
         }
         ).catch((error)=>{
@@ -90,10 +90,6 @@ const Template = () =>{
     }
 
     const onCheckToggle = (id) =>{
-        // setTodos(todos => todos.map(todo =>
-        //     (todo.id === id ? {...todo, checked: !todo.checked}:
-        //     todo
-        // )))
         axios({
             method: 'put',
             url: 'https://cloudwi.herokuapp.com/todo',
@@ -112,7 +108,6 @@ const Template = () =>{
     }
 
     const onRemove = (id) =>{
-        // setTodos(todos => todos.filter(todo=>todo.id !== id))
         axios({
             method: 'delete',
             url: 'https://cloudwi.herokuapp.com/todo',

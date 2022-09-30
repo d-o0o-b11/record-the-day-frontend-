@@ -50,8 +50,7 @@ const SignUp = () =>{
                 navigate('/Login');
               })
               .catch((error)=>{
-                // alert(error.message);
-                console.log(error)
+                alert("회원가입 실패, 다시 시도해주세요")
               });
         }
 

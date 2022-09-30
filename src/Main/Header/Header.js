@@ -22,7 +22,26 @@ const Header = () =>{
         dispatch(setLogout());
         navigate('/');
     }
-    // console.log(isLogin)
+    
+    const Need_Login_todo = () =>{
+        if(!isLogin){
+            alert("로그인 후 사용가능합니다.");
+            navigate('/Login');
+        }
+        else{
+            navigate('/ToDoList');
+        }
+    }
+
+    const Need_Login_note = () =>{
+        if(!isLogin){
+            alert("로그인 후 사용가능합니다.");
+            navigate('/Login');
+        }
+        else{
+            navigate('/Note');
+        }
+    }
 
     useEffect(()=>{},[isLogin]);
 
@@ -32,8 +51,8 @@ const Header = () =>{
         <Link to="/" className="link_color"><img src={logo}/></Link>
 
         <div className="flex-end">
-            <Link to="/ToDoList" className="link_color"><h4 className="menu_font yellow underline">To do list</h4></Link>
-            <Link to="/Note" className="link_color"><h4 className="menu_font yellow underline">Note</h4></Link>
+            <span onClick={Need_Login_todo} className="link_color"><h4 className="menu_font yellow underline">To do list</h4></span>
+            <span onClick={Need_Login_note} className="link_color"><h4 className="menu_font yellow underline">Note</h4></span>
             
             {isLogin &&
                 <>
