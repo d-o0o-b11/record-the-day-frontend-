@@ -10,10 +10,7 @@ const NoteInsert = () =>{
 
     const token = getCookie('token');
 
-    const [account, setAccount] = useState({
-        title: "",
-        content: "",
-    });
+   
     const [title, SetTitle] = useState("")
     const [impoColor, SetimporColor] = useState("")
     const [content, SetContent] = useState("")

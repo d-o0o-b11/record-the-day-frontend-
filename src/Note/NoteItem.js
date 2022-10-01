@@ -9,7 +9,7 @@ const NoteItem = ({notes, onRemove})=>{
     return(
         <div className="notelist_frame">
                 <div className="note_list">
-                    <h3 className="content_text">{content}</h3>
+                    <h3 className="content_text" dangerouslySetInnerHTML={ {__html: content} }></h3>
                 </div>
         </div>
     )

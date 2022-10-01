@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./SignUp.css"
 import icon6 from "../img/icon6.png"
 import axios from "axios"
@@ -6,32 +6,50 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUp = () =>{
 
-    const [account, setAccount] = useState({
-        email: "",
-        password: "",
-        nickname:"",
-    });
-    
-      //input에 입력될 때마다 account state값 변경되게 하는 함수
-    const onChangeAccount = (e) => {
-        setAccount({
-            ...account,
-            [e.target.name]: e.target.value,
-        });
-    };
 
-    //   console.log(account)
+    const [Email, SetEmail] = useState("")
+    const [Nickname, SetNickname] = useState("")
+    const [Password, SetPassword] = useState("")
+
+    const [PasswordCheck , SetPasswordCheck] = useState(true);
+    const [EmailCheck, SetEmailCheck] = useState(true);
+
+
+    useEffect(()=>{
+        // console.log('이메일 유효성 검사 :: ',EmailCheck)
+    },[PasswordCheck, EmailCheck])
+
+    const onChangeEmail = (e) =>{
+        SetEmail(e.target.value)
+
+        var regExp = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+        SetEmailCheck(regExp.test(e.target.value));
+    }
+
+    const onChangePassword = (e) =>{
+        SetPassword(e.target.value)
+
+        var regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+        SetPasswordCheck(regExp.test(e.target.value));
+
+    }
+
+    const onChangeNickname = (e) =>{
+        SetNickname(e.target.value)
+    }
+
+
     const navigate = useNavigate();
     const submit = ()=>{
         
 
-        if(account.email===""){
+        if(Email==="" || !EmailCheck){
             alert("이메일을 입력해주세요")
         }
-        else if(account.password===""){
-            alert("비밀번호를 입력해주세요")
+        else if(Password === "" || !PasswordCheck){
+            alert("비밀번호를 다시 입력해주세요")
         }
-        else if(account.nickname===""){
+        else if(Nickname===""){
             alert("닉네임을 입력해주세요")
         }
         else{
@@ -39,9 +57,9 @@ const SignUp = () =>{
                 method:'post',
                 url:'https://cloudwi.herokuapp.com/member',
                 data:{
-                    email :account.email,
-                    password:account.password,
-                    nickname:account.nickname
+                    email :Email,
+                    password:Password,
+                    nickname:Nickname
                 }
             })
             .then((Response)=>{
@@ -70,29 +88,40 @@ const SignUp = () =>{
                         id="email"
                         name="email"
                         placeholder="Email"
-                        onChange={onChangeAccount}
+                        onChange={onChangeEmail}
                     />
                 </div>
+                {   EmailCheck ?
+                        <></>
+                        :
+                        <h5 style={{color:"gray", margin: "0 0 20px 0", fontStyle: "italic"}}>이메일 형식이 올바르지 않습니다.</h5>  
+                }
                 <div>
                     <input
                         id="password"
-                        name="password"
+                        name="Password"
                         type="password"
                         placeholder="PassWord"
-                        onChange={onChangeAccount}
+                        onChange={onChangePassword}
                     />
                 </div>
+                {   PasswordCheck ?
+                        <></> 
+                        :
+                        <h5 style={{color:"gray", margin: "0 0 20px 0", fontStyle: "italic"}}>영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 6자 ~ 20자여야 합니다.</h5>
+
+                }
+
                 <div>
                     <input
                         id="nickname"
                         name="nickname"
                         placeholder="NickName"
-                        onChange={onChangeAccount}
+                        onChange={onChangeNickname}
                     />
                 </div>
                 
-                <h6>비밀번호</h6>
-                <h6 style={{color:"red"}}>* 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 6자 ~ 20자여야 합니다.</h6>
+
                 <button onClick={submit}>
                     <h3>SignUp</h3>
                 </button>
