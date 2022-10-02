@@ -46,13 +46,13 @@ const Note = () =>{
 
     const token = getCookie('token');
     const [count, setCount] = useState(0);
-    const data = PrintList(`https://cloudwi.herokuapp.com/todo`, token, count);
+    const data = PrintList(`https://cloudwi.herokuapp.com/note`, token, count);
 
 
     const onRemove = (id) =>{
         axios({
             method: 'delete',
-            url: 'https://cloudwi.herokuapp.com/todo',
+            url: 'https://cloudwi.herokuapp.com/note',
             headers: {
                 "X-AUTH-TOKEN": token
             },

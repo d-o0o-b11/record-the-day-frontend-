@@ -4,7 +4,7 @@ import icon8 from "../img/icon8.png"
 import ToDoList from "./ToDoList";
 import ToDoInsert from "./ToDoInsert";
 import axios from "axios";
-import { getCookie, removeCookie } from "../util/cookie";
+import { getCookie } from "../util/cookie";
 
 
 const PrintList = (url, token, count) => {

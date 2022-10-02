@@ -8,6 +8,7 @@ import SignUp from "./SignUp/SignUp"
 import ToDoList from "./ToDoList/ToDoList"
 import Template from "./ToDoList/Template"
 import Note from "./Note/Note"
+import NoteDetail from "./Note/NoteDetail";
 
 import {Mobile, Pc} from "../src/Media/MediaQuery"
 import NoteInsert from "./Note/NoteInsert";
@@ -45,6 +46,8 @@ const App = ()=>{
             <Route path="/Note" element={<Note/>}/>
 
             <Route path="/InsertWrite" element={<NoteInsert/>} />
+
+            <Route path="/detail" element={<NoteDetail/>} />
 
            
         </Routes>
