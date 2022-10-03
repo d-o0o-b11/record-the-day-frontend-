@@ -28,9 +28,11 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-gap: 30px;
+    grid-row-gap: 65px;
     padding-top: 50px;
     place-items: center;
-    height: 500px;
+    /* height: 500px; */
+    padding-bottom: 50px;
 }
 
 .note_list{
@@ -40,6 +42,7 @@
     border: 3px solid #000000;
     border-radius: 50px;
     text-align: center;
+    box-shadow: 7px 7px 2px 1px #c7ad92;
 }
 
 /* Teb */
@@ -71,7 +74,7 @@
         grid-gap: 15px;
     }
     .note_list{
-        width: 330px;
+        width: 295px;
         height: 110px;
     }
 }

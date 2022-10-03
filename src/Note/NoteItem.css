@@ -1,3 +1,10 @@
 .content_text{
     padding : 90px 0;
 }
+
+/* phone */
+@media screen and (max-width:700px) {
+    .content_text {
+        padding: 25px 0;
+    }
+}

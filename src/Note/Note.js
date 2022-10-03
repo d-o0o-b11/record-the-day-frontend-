@@ -17,7 +17,7 @@ const PrintList = (url, token, count) => {
                 "X-AUTH-TOKEN": token
             }
         }).then((Response)=>{
-            setData(Response.data)   
+            setData(Response.data) 
         }
         ).catch((error)=>{
             alert("실패하였습니다.")
@@ -83,6 +83,7 @@ const Note = () =>{
             </button>
 
             <NoteList notes={data} onRemove={onRemove}/>
+
 
         </div>
         </>

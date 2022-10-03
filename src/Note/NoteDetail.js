@@ -10,7 +10,7 @@ const PrintList = (url, token, id) => {
     const ListUrl = () => {
         axios({
             method: 'get',
-            url: `${url/id}`,
+            url: `${url}/${id}`,
             headers: {
                 "X-AUTH-TOKEN": token
             }

@@ -1,5 +1,6 @@
 import React from "react";
 import NoteItem from "./NoteItem";
+import "./NoteItem.css"
 
 const NoteList = ({notes, onRemove}) =>{
 
@@ -12,7 +13,7 @@ const NoteList = ({notes, onRemove}) =>{
 
     return(
         <>
-            <div>
+            <div className="notelist_frame">
                 {notes.map(note=>(
                     <NoteItem notes={note} key={note.id} onRemove={onRemove}/>
                 ))}

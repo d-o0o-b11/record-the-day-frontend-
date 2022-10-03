@@ -4,12 +4,13 @@ import icon3 from "../img/icon3.png"
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
-import { getCookie, removeCookie } from "../util/cookie";
+import { getCookie } from "../util/cookie";
+import { useNavigate } from 'react-router-dom';
 
 const NoteInsert = () =>{
 
     const token = getCookie('token');
-
+    const navigate = useNavigate();
    
     const [title, SetTitle] = useState("")
     const [impoColor, SetimporColor] = useState("")
@@ -54,7 +55,8 @@ const NoteInsert = () =>{
                 },
             })
             .then((Response)=>{
-                console.log("tjdrhd")
+                alert("글이 저장되었습니다.")
+                navigate('/Note')
             }
             )
         }
@@ -87,7 +89,7 @@ const NoteInsert = () =>{
                 <h4>중요도</h4>
 
                 <div className="importance_color import_margin">
-                    <input type="radio" value="#ffffff" onClick={onChangeColor} name="color"/>
+                    <input type="radio" value="#000000" onClick={onChangeColor} name="color"/>
                     <label className="importance_color"></label>
 
                     <input type="radio" value="#F5333E" onClick={onChangeColor} name="color"/>
