@@ -24,7 +24,7 @@ path{
 
 .main_svg{
     width: 660px;
-    height: 386px;
+    height: 45%;
 }
 
 
@@ -46,17 +46,18 @@ li {
 
 .main_font_mg{
     margin-top: 80px;
-    /* text-align: center; */
-    padding-left: 30px;
+    text-align: center;
+    /* padding-left: 30px; */
+    font-size: 0.8em;
 }
 
 .main_font_mg :nth-child(2){
     margin-top: 50px;
 }
 
-.main_font{
+/* .main_font{
     font-size: 40px;
-}
+} */
 
 .main_img2{
     width: 580px;

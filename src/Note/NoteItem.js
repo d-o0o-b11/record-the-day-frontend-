@@ -5,18 +5,18 @@ import "./Note.css"
 import "./NoteItem.css"
 
 const NoteItem = ({notes, onRemove})=>{
-    const {id, title, importance} = notes;
+    const {id, title, importance, modifiedDate, content} = notes;
 
     return(
         
           
-                <Link to={{
-                    pathname:"/detail",
-                    search:`?board_id=${id}`
-                }} style={{ textDecoration: 'none', color: 'black'}}>
+                <Link to={
+                    `/detail/${id}`
+                } style={{ textDecoration: 'none', color: 'black'}}>
 
                     <div className="note_list" style={{borderColor : importance}}>
-                        <h3 className="content_text" dangerouslySetInnerHTML={ {__html: title} }></h3>
+                        <h5>{modifiedDate.substr(0,10)}</h5>
+                        <h3 className="content_text" dangerouslySetInnerHTML={ {__html: title} }></h3>    
                     </div>
                     
                 </Link>

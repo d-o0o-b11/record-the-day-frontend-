@@ -1,0 +1,36 @@
+.notedetail_frame{
+    padding: 30px 95px;
+}
+
+.notedetail_frame hr{
+    background-color: #5E503F;
+    height: 1px;
+    border: 0;
+}
+
+.notedetail_frame2{
+    padding: 30px 95px;
+    text-align: center;
+}
+
+.notedetail_frame2 button{
+    width: 100px;
+    height: 50px;
+    font-family: "gmarket", sans-serif, "Times New Roman", serif;
+    margin: 0 5px;
+}
+
+/* Teb */
+@media screen and (max-width:1300px) {
+    
+}
+
+/* phone */
+@media screen and (max-width:700px) {
+    .notedetail_frame{
+        padding: 30px 15px;
+    }
+    .notedetail_frame2{
+        padding: 30px 15px;
+    }
+}

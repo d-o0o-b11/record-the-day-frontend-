@@ -2,9 +2,19 @@
     padding : 90px 0;
 }
 
+/* Teb */
+@media screen and (max-width:1300px) {
+    .content_text {
+        padding: 50px 0;
+    }
+}
+
 /* phone */
 @media screen and (max-width:700px) {
     .content_text {
-        padding: 25px 0;
+        padding: 0 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }

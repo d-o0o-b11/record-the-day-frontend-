@@ -5,10 +5,10 @@ import Mobile_Header from "./Main/Header/MoHeader"
 import Main from "./Main/Main"
 import Login from "./Login/Login"
 import SignUp from "./SignUp/SignUp"
-import ToDoList from "./ToDoList/ToDoList"
 import Template from "./ToDoList/Template"
 import Note from "./Note/Note"
 import NoteDetail from "./Note/NoteDetail";
+import EditNote from "./Note/EditNote"
 
 import {Mobile, Pc} from "../src/Media/MediaQuery"
 import NoteInsert from "./Note/NoteInsert";
@@ -47,8 +47,9 @@ const App = ()=>{
 
             <Route path="/InsertWrite" element={<NoteInsert/>} />
 
-            <Route path="/detail" element={<NoteDetail/>} />
+            <Route path="/detail/:id" element={<NoteDetail/>} />
 
+            <Route path="/edit/:id" element={<EditNote/>} />
            
         </Routes>
     </BrowserRouter>

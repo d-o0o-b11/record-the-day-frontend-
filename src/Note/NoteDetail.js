@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import "./NoteDetail.css"
-import qs from 'qs';
 import axios from "axios";
 import { getCookie } from "../util/cookie";
+import { useParams, Link } from "react-router-dom"
 
 const PrintList = (url, token, id) => {
     const [data, setData] = useState([]);
@@ -32,24 +32,33 @@ const PrintList = (url, token, id) => {
 
 
 
-const NoteDetail = ({location}) =>{
+const NoteDetail = () =>{
 
-    const query = qs.parse(location.search, {
-        ignoreQueryPrefix: true
-    });
-    console.log(query);
+    const { id } = useParams()
 
     const token = getCookie('token');
-    const data = PrintList(`https://cloudwi.herokuapp.com/note`, token, query.id);
+    const data = PrintList(`https://cloudwi.herokuapp.com/note`, token, id);
 
     return(
         <>
-        <h1>제목: {data.title}</h1>
-        <hr></hr>
+            <div className="notedetail_frame">
+                <h1>제목: {data.title}</h1>
+            <hr/>
 
-        <h3 dangerouslySetInnerHTML={ {__html: data.content} }></h3>
+            <h3 dangerouslySetInnerHTML={ {__html: data.content} }></h3>
 
-        <button>목록으로 돌아가기</button>
+            </div>
+
+            <div className="notedetail_frame2">
+                
+                    <button>
+                        <Link to={ `/edit/${id}`} style={{ textDecoration: 'none', color: 'black'}}>
+                            수정
+                        </Link>
+                    </button>
+                    <button>삭제</button>
+                
+            </div>
         </>
     )
 }

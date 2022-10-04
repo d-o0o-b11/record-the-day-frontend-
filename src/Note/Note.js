@@ -18,6 +18,7 @@ const PrintList = (url, token, count) => {
             }
         }).then((Response)=>{
             setData(Response.data) 
+            console.log(Response.data)
         }
         ).catch((error)=>{
             alert("실패하였습니다.")
