@@ -29,6 +29,7 @@
 
 진행사항
 ```
+Main (90%)
 Login (90%)
 SingUp (100%)
 Todolist (90%)
