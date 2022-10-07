@@ -5,6 +5,7 @@ import NoteList from "./NoteList"
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { getCookie, removeCookie } from "../util/cookie";
+import Pagination from "../Pagination";
 
 const PrintList = (url, token, count) => {
     const [data, setData] = useState([]);
@@ -21,6 +22,7 @@ const PrintList = (url, token, count) => {
             console.log(Response.data)
         }
         ).catch((error)=>{
+            console.log(error)
             alert("실패하였습니다.")
         })
 
@@ -39,6 +41,9 @@ const PrintList = (url, token, count) => {
 
 
 const Note = () =>{
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
+
 
     const navigate = useNavigate();
     const Write = () =>{
@@ -47,7 +52,7 @@ const Note = () =>{
 
     const token = getCookie('token');
     const [count, setCount] = useState(0);
-    const data = PrintList(`https://cloudwi.herokuapp.com/note`, token, count);
+    const data = PrintList(`https://cloudwi.herokuapp.com/note?page=${page}`, token, count);
 
 
     const onRemove = (id) =>{
@@ -85,6 +90,12 @@ const Note = () =>{
 
             <NoteList notes={data} onRemove={onRemove}/>
 
+            <Pagination
+                total={data.length}
+                limit={limit}
+                page={page}
+                setPage={setPage}
+            />
 
         </div>
         </>

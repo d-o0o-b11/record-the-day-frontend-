@@ -5,10 +5,12 @@ import ToDoList from "./ToDoList";
 import ToDoInsert from "./ToDoInsert";
 import axios from "axios";
 import { getCookie } from "../util/cookie";
+import Pagination from "../Pagination";
 
 
-const PrintList = (url, token, count) => {
+const PrintList = (url, token, count, count_p) => {
     const [data, setData] = useState([]);
+    const [pagecount, setPageCount] = useState(0)
     
     const ListUrl = () => {
         axios({
@@ -18,12 +20,26 @@ const PrintList = (url, token, count) => {
                 "X-AUTH-TOKEN": token
             }
         }).then((Response)=>{
-            setData(Response.data)   
+            setData(Response.data)  
+            console.log(data) 
         }
         ).catch((error)=>{
             alert("실패하였습니다.")
         })
-
+        
+        axios({
+            method:'get',
+            url: 'https://cloudwi.herokuapp.com/todo/count',
+            headers: {
+                "X-AUTH-TOKEN": token
+            }
+        }).then((Response)=>{
+            setPageCount(Response.data)  
+            console.log(data) 
+        }
+        ).catch((error)=>{
+            alert("실패하였습니다.")
+        })
        
     }
     useEffect(() => { //한번만 실행
@@ -34,15 +50,23 @@ const PrintList = (url, token, count) => {
         ListUrl();
     }, [count]);
 
-    return data;
+    useEffect(() => { //page 변할 때 마다 실행
+        ListUrl();
+    }, [count_p]);
+
+    return [data,pagecount];
   }
 
 const Template = () =>{
 
     const token = getCookie('token');
     const [count, setCount] = useState(0);
-    const data = PrintList(`https://cloudwi.herokuapp.com/todo`, token, count);
+    const [page, setPage] = useState(0);
+    const [count_p, setCount_p]=useState(0);
+    const data = PrintList(`https://cloudwi.herokuapp.com/todo?page=${page}`, token, count, count_p);
 
+    
+console.log(data)
 
     const [insertToggle, setInertToggle] = useState(false);
 
@@ -122,7 +146,7 @@ const Template = () =>{
                     <img src={icon8}/>
                 </div>
 
-                <h1>To Do List</h1>
+                <h1>To Do List </h1>
 
                 {insertToggle && <ToDoInsert onInsertToggle={onInsertToggle} onInsertTodo={onInsertTodo}/>}
 
@@ -130,8 +154,16 @@ const Template = () =>{
                     <h3>일정 추가</h3>
                 </button>
 
-                <h3>오늘의 할 일 - {data.length}</h3>
-                <ToDoList todos={data} onCheckToggle={onCheckToggle} onRemove={onRemove}/>
+                <h3>오늘의 할 일 - {data[1]}</h3>
+                <ToDoList todos={data[0]} onCheckToggle={onCheckToggle} onRemove={onRemove}/>
+
+                <Pagination
+                    total={data[1]}
+                    limit='9'
+                    page={page}
+                    setPage={setPage}
+                    setcount_p={setCount_p}
+                />
             </div>    
         </>
     )

@@ -5,34 +5,6 @@ import { getCookie } from "../util/cookie";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
-// const PrintList = (url, token, id) => {
-//     const [data, setData] = useState([]);
-    
-//     const ListUrl = () => {
-//         axios({
-//             method: 'get',
-//             url: `${url}/${id}`,
-//             headers: {
-//                 "X-AUTH-TOKEN": token
-//             }
-//         }).then((Response)=>{
-//             setData(Response.data)   
-//             console.log(Response.data)
-//         }
-//         ).catch((error)=>{
-//             alert("실패하였습니다.")
-//         })
-
-       
-//     }
-//     useEffect(() => { //한번만 실행
-//         ListUrl();
-//     }, []);
-
-//     return data;
-//   }
-
-
 
 const EditBoard = () => {
   const navigate = useNavigate();

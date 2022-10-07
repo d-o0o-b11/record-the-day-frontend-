@@ -7,9 +7,9 @@ const NoteList = ({notes, onRemove}) =>{
     //check를 누르면 정렬이 되지않은 check한 list가 제일 밑으로 가도록 정렬되어있다.
     //해결 => 프론트에서 axios.get data를 sort한 후 뿌리기로 하였다.
     //내림차순
-    notes.sort(function(a,b){
-        return b["id"] - a["id"];
-    })
+    // notes.sort(function(a,b){
+    //     return b["id"] - a["id"];
+    // })
 
     return(
         <>
