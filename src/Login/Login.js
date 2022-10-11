@@ -4,7 +4,7 @@ import icon5 from "../img/icon5.png";
 
 import { useNavigate } from "react-router-dom";
 
-import { setCookie } from "../util/cookie";
+import { getCookie, setCookie } from "../util/cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { goToHome, setLogin } from "../modules/Logincheck";
 
@@ -24,12 +24,14 @@ const Login = () => {
     });
   };
 
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") login();
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const login = (e) => {
-    e.preventDefault();
-
+  const login = () => {
     if (account.email === "") {
       alert("아이디를 입력해주세요");
     } else if (account.password === "") {
@@ -46,6 +48,7 @@ const Login = () => {
           let expires = new Date(); //30분 저장
           expires.setMinutes(expires.getMinutes() + 30);
           setCookie("username", res.payload.nickname, { path: "/", expires });
+          localStorage.setItem("time", expires.toUTCString());
           dispatch(setLogin());
           dispatch(goToHome(navigate));
         } else {
@@ -78,6 +81,7 @@ const Login = () => {
           type="password"
           placeholder="PassWord"
           onChange={onChangeAccount}
+          onKeyPress={onKeyPress}
         />
       </div>
 

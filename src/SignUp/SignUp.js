@@ -37,6 +37,11 @@ const SignUp = () => {
     SetNickname(e.target.value);
   };
 
+  const onKeyPress = (e) =>{
+    if(e.key==='Enter')
+        submit();
+  }
+
   const navigate = useNavigate();
   // const Indexid = useSelector((state)=>state.userAction.register)
 
@@ -113,6 +118,7 @@ const SignUp = () => {
           name="nickname"
           placeholder="NickName"
           onChange={onChangeNickname}
+          onKeyPress={onKeyPress}
         />
       </div>
 

@@ -1,66 +1,74 @@
-import React, {useState, useEffect} from "react";
-import "./NoteDetail.css"
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import "./NoteDetail.css";
 import { getCookie } from "../util/cookie";
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { notedetail, notedelete } from "../modules/userAction";
+import { useDispatch } from "react-redux";
 
-const PrintList = (url, token, id) => {
-    const [data, setData] = useState([]);
-    
-    const ListUrl = () => {
-        axios({
-            method: 'get',
-            url: `${url}/${id}`,
-            headers: {
-                "X-AUTH-TOKEN": token
-            }
-        }).then((Response)=>{
-            setData(Response.data)   
-        }
-        ).catch((error)=>{
-            alert("실패하였습니다.")
-        })
+const PrintList = (headers, id, dispatch) => {
+  const [data, setData] = useState([]);
 
-       
-    }
-    useEffect(() => { //한번만 실행
-        ListUrl();
-    }, []);
+  const ListUrl = () => {
+    dispatch(notedetail(id, headers)).then((res) => {
+      setData(res.payload);
+    });
+  };
+  useEffect(() => {
+    //한번만 실행
+    ListUrl();
+  }, []);
 
-    return data;
-  }
+  return data;
+};
 
+const NoteDetail = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const token = getCookie("token");
+  const navigate = useNavigate();
 
+  let headers = {
+    AccessToken: token,
+  };
 
-const NoteDetail = () =>{
+  const data = PrintList(headers, id, dispatch);
 
-    const { id } = useParams()
+  const onRemove = () => {
+    let body = {
+      id: id,
+    };
 
-    const token = getCookie('token');
-    const data = PrintList(`https://cloudwi.herokuapp.com/note`, token, id);
+    dispatch(notedelete(headers, body)).then((res) => {
+      if (res.payload > 0) {
+        alert("글이 삭제되었습니다.");
+        navigate("/Note");
+      }
+    });
+  };
 
-    return(
-        <>
-            <div className="notedetail_frame">
-                <h1>제목: {data.title}</h1>
-            <hr/>
+  return (
+    <>
+      <div className="notedetail_frame">
+        <h1>제목: {data.title}</h1>
+        <hr />
 
-            <h3 dangerouslySetInnerHTML={ {__html: data.content} }></h3>
+        <h3 dangerouslySetInnerHTML={{ __html: data.content }}></h3>
+      </div>
 
-            </div>
+      <div className="notedetail_frame2">
+        <button style={{ cursor: "pointer" }}>
+          <Link
+            to={`/edit/${id}`}
+            style={{ textDecoration: "none", color: "black" }}>
+            수정
+          </Link>
+        </button>
+        <button onClick={onRemove} style={{ cursor: "pointer" }}>
+          삭제
+        </button>
+      </div>
+    </>
+  );
+};
 
-            <div className="notedetail_frame2">
-                
-                    <button>
-                        <Link to={ `/edit/${id}`} style={{ textDecoration: 'none', color: 'black'}}>
-                            수정
-                        </Link>
-                    </button>
-                    <button>삭제</button>
-                
-            </div>
-        </>
-    )
-}
-
-export default NoteDetail
+export default NoteDetail;

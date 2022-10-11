@@ -1,106 +1,97 @@
-import React, {useState, useEffect} from "react";
-import "./Note.css"
-import icon7 from "../img/icon7.png"
-import NoteList from "./NoteList"
-import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./Note.css";
+import icon7 from "../img/icon7.png";
+import NoteList from "./NoteList";
+import { useNavigate } from "react-router-dom";
 import { getCookie, removeCookie } from "../util/cookie";
 import Pagination from "../Pagination";
+import { notelist, notedelete, notelistPage } from "../modules/userAction";
+import { useDispatch, useSelector } from "react-redux";
 
-const PrintList = (url, token, count) => {
-    const [data, setData] = useState([]);
-    
-    const ListUrl = () => {
-        axios({
-            method: 'get',
-            url: `${url}`,
-            headers: {
-                "X-AUTH-TOKEN": token
-            }
-        }).then((Response)=>{
-            setData(Response.data) 
-            console.log(Response.data)
-        }
-        ).catch((error)=>{
-            console.log(error)
-            alert("실패하였습니다.")
-        })
+const PrintList = (page, count, count_p, headers, dispatch) => {
+  const [data, setData] = useState([]);
+  const [pagecount, setPageCount] = useState(0);
 
-       
-    }
-    useEffect(() => { //한번만 실행
-        ListUrl();
-    }, []);
+  const ListUrl = () => {
+    dispatch(notelist(page, headers)).then((res) => {
+      setData(res.payload);
+    });
 
-    useEffect(() => { //count 변할 때 마다 실행
-        ListUrl();
-    }, [count]);
+    dispatch(notelistPage(headers)).then((res) => {
+      setPageCount(res.payload);
+    });
+  };
+  useEffect(() => {
+    //한번만 실행
+    ListUrl();
+  }, []);
 
-    return data;
-  }
+  useEffect(() => {
+    //count 변할 때 마다 실행
+    ListUrl();
+  }, [count]);
 
+  useEffect(() => {
+    //page 변할 때 마다 실행
+    ListUrl();
+  }, [count_p]);
 
-const Note = () =>{
-    const [limit, setLimit] = useState(10);
-    const [page, setPage] = useState(1);
+  return [data, pagecount];
+};
 
+const Note = () => {
+  const [page, setPage] = useState(0);
+  const dispatch = useDispatch();
 
-    const navigate = useNavigate();
-    const Write = () =>{
-        navigate('/InsertWrite');
-    }
+  const navigate = useNavigate();
+  const Write = () => {
+    navigate("/InsertWrite");
+  };
+  const token = getCookie("token");
 
-    const token = getCookie('token');
-    const [count, setCount] = useState(0);
-    const data = PrintList(`https://cloudwi.herokuapp.com/note?page=${page}`, token, count);
+  let headers = {
+    AccessToken: token,
+  };
 
+  const [count, setCount] = useState(0);
+  const [count_p, setCount_p] = useState(0);
+  const data = PrintList(page, count, count_p, headers, dispatch);
 
-    const onRemove = (id) =>{
-        axios({
-            method: 'delete',
-            url: 'https://cloudwi.herokuapp.com/note',
-            headers: {
-                "X-AUTH-TOKEN": token
-            },
-            data: {
-                id: id
-            },
-        })
-        .then((Response)=>{
-            setCount(count+1);
-        }
-        ).catch((error)=>{
-            alert("삭제 실패")
-        })
-    }
+  const onRemove = (id) => {
+    let body = {
+      id: id,
+    };
 
+    dispatch(notedelete(headers, body)).then((res) => {
+      setCount(count + 1);
+    });
+  };
 
-    return(
-        <>
-        <div className="note_frame">
-            <div className="note_icon_marg">
-                <img src={icon7}/>
-            </div>
-
-            <h1>Note</h1>
-
-            <button onClick={Write} className="note_listbtn">
-                <h3>메모 추가</h3>
-            </button>
-
-            <NoteList notes={data} onRemove={onRemove}/>
-
-            <Pagination
-                total={data.length}
-                limit={limit}
-                page={page}
-                setPage={setPage}
-            />
-
+  return (
+    <>
+      <div className="note_frame">
+        <div className="note_icon_marg">
+          <img src={icon7} />
         </div>
-        </>
-    )
-}
 
+        <h1>Note</h1>
 
-export default Note
+        <button onClick={Write} className="note_listbtn">
+          <h3>메모 추가</h3>
+        </button>
+
+        <NoteList notes={data[0]} onRemove={onRemove} />
+
+        <Pagination
+          total={data[1]}
+          limit="9"
+          page={page}
+          setPage={setPage}
+          setcount_p={setCount_p}
+        />
+      </div>
+    </>
+  );
+};
+
+export default Note;

@@ -3,61 +3,43 @@ import "./Template.css";
 import icon8 from "../img/icon8.png";
 import ToDoList from "./ToDoList";
 import ToDoInsert from "./ToDoInsert";
-import axios from "axios";
 import { getCookie } from "../util/cookie";
 import Pagination from "../Pagination";
-import { todolist, todolistPage } from "../modules/userAction";
+import {
+  todolist,
+  todolistPage,
+  todoinsert,
+  todocheck,
+  todoremove,
+  TimeSet,
+} from "../modules/userAction";
+import { removeCookie } from "../util/cookie";
+import { setLogout } from "../modules/Logincheck";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const PrintList = (page, token, count, count_p, dispatch) => {
+const PrintList = (page, count, count_p, headers, dispatch, navigate) => {
   const [data, setData] = useState([]);
   const [pagecount, setPageCount] = useState(0);
 
   const ListUrl = () => {
-    let headers = {
-      "AccessToken": token,
-    };
-
     dispatch(todolist(page, headers)).then((res) => {
-      console.log("ㄱ밧 ㅈㄱ");
-      //   setData(res.payload.data);
+      setData(res.payload);
     });
 
     dispatch(todolistPage(headers)).then((res) => {
-      console.log("성공2");
-      //   setPageCount(res.payload.data);
+      setPageCount(res.payload);
     });
 
-    // axios({
-    //   method: "get",
-    //   url: `${url}`,
-    //   headers: {
-    //     "X-AUTH-TOKEN": token,
-    //   },
-    // })
-    //   .then((Response) => {
-    //     setData(Response.data);
-    //     console.log(data);
-    //   })
-    //   .catch((error) => {
-    //     alert("실패하였습니다.");
-    //   });
-
-    // axios({
-    //   method: "get",
-    //   url: "https://cloudwi.herokuapp.com/todo/count",
-    //   headers: {
-    //     "X-AUTH-TOKEN": token,
-    //   },
-    // })
-    //   .then((Response) => {
-    //     setPageCount(Response.data);
-    //     console.log(data);
-    //   })
-    //   .catch((error) => {
-    //     alert("실패하였습니다.");
-    //   });
+    console.log(dispatch(TimeSet).payload);
+    if (dispatch(TimeSet).payload) {
+      removeCookie("username");
+      dispatch(setLogout());
+      navigate("/");
+      alert("로그인 세션이 종료되었습니다.");
+    }
   };
+
   useEffect(() => {
     //한번만 실행
     ListUrl();
@@ -82,10 +64,13 @@ const Template = () => {
   const [page, setPage] = useState(0);
   const [count_p, setCount_p] = useState(0);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const data = PrintList(page, token, count, count_p, dispatch);
+  let headers = {
+    AccessToken: token,
+  };
 
-  console.log(data);
+  const data = PrintList(page, count, count_p, headers, dispatch, navigate);
 
   const [insertToggle, setInertToggle] = useState(false);
 
@@ -98,61 +83,34 @@ const Template = () => {
     if (text === "") {
       return alert("할 일을 입력해주세요");
     } else {
-      console.log(token);
+      let body = {
+        content: text,
+      };
 
-      axios({
-        method: "post",
-        url: "https://cloudwi.herokuapp.com/todo",
-        headers: {
-          "AccessToken": token,
-        },
-        data: {
-          content: text,
-        },
-      }).then((Response) => {
-        // setCount(count + 1);
-        console.log("입력은됨")
-      }).catch(err=> console.log(err))
+      dispatch(todoinsert(headers, body)).then((res) => {
+        setCount(count + 1);
+      });
     }
   };
 
   const onCheckToggle = (id) => {
-    axios({
-      method: "put",
-      url: "https://cloudwi.herokuapp.com/todo",
-      headers: {
-        AccessToken: token,
-      },
-      data: {
-        id: id,
-      },
-    })
-      .then((Response) => {
-        setCount(count + 1);
-      })
-      .catch((error) => {
-        alert("실패하였습니다.");
-      });
+    let body = {
+      id: id,
+    };
+
+    dispatch(todocheck(headers, body)).then((res) => {
+      setCount(count + 1);
+    });
   };
 
   const onRemove = (id) => {
-    axios({
-      method: "delete",
-      url: "https://cloudwi.herokuapp.com/todo",
-      headers: {
-        "X-AUTH-TOKEN": token,
-      },
-      data: {
-        id: id,
-      },
-    })
-      .then((Response) => {
-        console.log(token);
-        setCount(count + 1);
-      })
-      .catch((error) => {
-        console.log(token);
-      });
+    let body = {
+      id: id,
+    };
+
+    dispatch(todoremove(headers, body)).then((res) => {
+      setCount(count + 1);
+    });
   };
 
   return (
