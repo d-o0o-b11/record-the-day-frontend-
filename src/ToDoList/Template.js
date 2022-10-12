@@ -35,7 +35,7 @@ const PrintList = (page, count, count_p, headers, dispatch, navigate) => {
     if (dispatch(TimeSet).payload) {
       removeCookie("username");
       dispatch(setLogout());
-      navigate("/");
+      navigate("/Login");
       alert("로그인 세션이 종료되었습니다.");
     }
   };
