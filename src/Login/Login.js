@@ -7,10 +7,17 @@ import { useNavigate } from "react-router-dom";
 import { getCookie, setCookie } from "../util/cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { goToHome, setLogin } from "../modules/Logincheck";
+import Loading from "../Loading/Loading";
 
 import { loginUser } from "../modules/userAction";
 
 const Login = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  });
+
   const [account, setAccount] = useState({
     email: "",
     password: "",
@@ -59,36 +66,42 @@ const Login = () => {
   };
 
   return (
-    <div className="login_frame">
-      <div className="login_icon_marg">
-        <img src={icon5} />
-      </div>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="login_frame">
+          <div className="login_icon_marg">
+            <img src={icon5} />
+          </div>
 
-      <h1>로그인</h1>
+          <h1>로그인</h1>
 
-      <div>
-        <input
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={onChangeAccount}
-        />
-      </div>
-      <div>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="PassWord"
-          onChange={onChangeAccount}
-          onKeyPress={onKeyPress}
-        />
-      </div>
+          <div>
+            <input
+              id="email"
+              name="email"
+              placeholder="Email"
+              onChange={onChangeAccount}
+            />
+          </div>
+          <div>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="PassWord"
+              onChange={onChangeAccount}
+              onKeyPress={onKeyPress}
+            />
+          </div>
 
-      <button onClick={login}>
-        <h3>Login</h3>
-      </button>
-    </div>
+          <button onClick={login}>
+            <h3>Login</h3>
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 

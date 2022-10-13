@@ -3,7 +3,7 @@ import "./Template.css";
 import icon8 from "../img/icon8.png";
 import ToDoList from "./ToDoList";
 import ToDoInsert from "./ToDoInsert";
-import { getCookie } from "../util/cookie";
+import { getCookie, removeCookie } from "../util/cookie";
 import Pagination from "../Pagination";
 import {
   todolist,
@@ -13,7 +13,6 @@ import {
   todoremove,
   TimeSet,
 } from "../modules/userAction";
-import { removeCookie } from "../util/cookie";
 import { setLogout } from "../modules/Logincheck";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +30,6 @@ const PrintList = (page, count, count_p, headers, dispatch, navigate) => {
       setPageCount(res.payload);
     });
 
-    console.log(dispatch(TimeSet).payload);
     if (dispatch(TimeSet).payload) {
       removeCookie("username");
       dispatch(setLogout());

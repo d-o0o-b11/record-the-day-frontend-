@@ -27,9 +27,15 @@ export default function (state = {}, { type, payload }) {
       return { ...state, todoinsert: payload };
     case TODOREMOVE:
       return { ...state, todoremove: payload };
-    case "REMOVE":
-      return { ...state, products: "" };
-    case "TimeSet":
+    case NOTELIST:
+      return { ...state, notelist: payload };
+    case NOTEDELETE:
+      return { ...state, notedelete: payload };
+    case NOTEDETAIL:
+      return { ...state, notedetail: payload };
+    case NOTEINSERT:
+      return { ...state, noteinsert: payload };
+    case TimeSet:
       return { ...state, timeset: payload };
     default:
       return state;

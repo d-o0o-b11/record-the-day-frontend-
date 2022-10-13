@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "./NoteDetail.css";
-import { getCookie } from "../util/cookie";
+import { getCookie, removeCookie } from "../util/cookie";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { notedetail, notedelete } from "../modules/userAction";
+import { notedetail, notedelete, TimeSet } from "../modules/userAction";
 import { useDispatch } from "react-redux";
+import { setLogout } from "../modules/Logincheck";
 
-const PrintList = (headers, id, dispatch) => {
+const PrintList = (headers, id, dispatch, navigate) => {
   const [data, setData] = useState([]);
 
   const ListUrl = () => {
     dispatch(notedetail(id, headers)).then((res) => {
       setData(res.payload);
     });
+
+    if (dispatch(TimeSet).payload) {
+      removeCookie("username");
+      dispatch(setLogout());
+      navigate("/Login");
+      alert("로그인 세션이 종료되었습니다.");
+    }
   };
   useEffect(() => {
     //한번만 실행
@@ -31,7 +39,7 @@ const NoteDetail = () => {
     AccessToken: token,
   };
 
-  const data = PrintList(headers, id, dispatch);
+  const data = PrintList(headers, id, dispatch, navigate);
 
   const onRemove = () => {
     let body = {

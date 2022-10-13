@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
@@ -12,6 +12,7 @@ import { TimeSet } from "../../modules/userAction";
 const Header = () => {
   const uname = getCookie("username");
   const isLogin = useSelector((state) => state.Logincheck.isLogin);
+  const checkLogin = useSelector((state) => state.Logincheck.checklogin);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -41,17 +42,21 @@ const Header = () => {
   };
 
   const ListUrl = () => {
-    console.log(dispatch(TimeSet).payload);
-    if (dispatch(TimeSet).payload) {
+    if (dispatch(TimeSet).payload && checkLogin === "yes") {
       removeCookie("username");
       dispatch(setLogout());
-      navigate("/Login");
+      Setlogincount(0);
+      navigate("/");
       alert("로그인 세션이 종료되었습니다.");
     }
   };
 
+  const [logincount, Setlogincount] = useState(0);
+
   useEffect(() => {
-    ListUrl();
+    if (logincount > 0) {
+      ListUrl();
+    }
   }, []);
 
   useEffect(() => {}, [isLogin]);

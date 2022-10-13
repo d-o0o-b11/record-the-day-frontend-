@@ -16,12 +16,14 @@ const MoHeader = () => {
 
   const uname = getCookie("username");
   const isLogin = useSelector((state) => state.Logincheck.isLogin);
+  const checkLogin = useSelector((state) => state.Logincheck.checklogin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const logoutClick = () => {
     removeCookie("username");
     dispatch(setLogout());
+    Setlogincount(0);
     navigate("/");
   };
 
@@ -44,17 +46,21 @@ const MoHeader = () => {
   };
 
   const ListUrl = () => {
-    console.log(dispatch(TimeSet).payload);
-    if (dispatch(TimeSet).payload) {
+    if (dispatch(TimeSet).payload && checkLogin === "yes") {
       removeCookie("username");
       dispatch(setLogout());
+      Setlogincount(0);
       navigate("/");
       alert("로그인 세션이 종료되었습니다.");
     }
   };
 
+  const [logincount, Setlogincount] = useState(0);
+
   useEffect(() => {
-    ListUrl();
+    if (logincount > 0) {
+      ListUrl();
+    }
   }, []);
 
   useEffect(() => {}, [isLogin]);

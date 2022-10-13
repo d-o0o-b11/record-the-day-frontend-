@@ -5,10 +5,16 @@ import NoteList from "./NoteList";
 import { useNavigate } from "react-router-dom";
 import { getCookie, removeCookie } from "../util/cookie";
 import Pagination from "../Pagination";
-import { notelist, notedelete, notelistPage } from "../modules/userAction";
+import {
+  notelist,
+  notedelete,
+  notelistPage,
+  TimeSet,
+} from "../modules/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import { setLogout } from "../modules/Logincheck";
 
-const PrintList = (page, count, count_p, headers, dispatch) => {
+const PrintList = (page, count, count_p, headers, dispatch, navigate) => {
   const [data, setData] = useState([]);
   const [pagecount, setPageCount] = useState(0);
 
@@ -20,6 +26,13 @@ const PrintList = (page, count, count_p, headers, dispatch) => {
     dispatch(notelistPage(headers)).then((res) => {
       setPageCount(res.payload);
     });
+
+    if (dispatch(TimeSet).payload) {
+      removeCookie("username");
+      dispatch(setLogout());
+      navigate("/Login");
+      alert("로그인 세션이 종료되었습니다.");
+    }
   };
   useEffect(() => {
     //한번만 실행
@@ -45,7 +58,14 @@ const Note = () => {
 
   const navigate = useNavigate();
   const Write = () => {
-    navigate("/InsertWrite");
+    if (dispatch(TimeSet).payload) {
+      removeCookie("username");
+      dispatch(setLogout());
+      navigate("/Login");
+      alert("로그인 세션이 종료되었습니다.");
+    } else {
+      navigate("/InsertWrite");
+    }
   };
   const token = getCookie("token");
 
@@ -55,17 +75,7 @@ const Note = () => {
 
   const [count, setCount] = useState(0);
   const [count_p, setCount_p] = useState(0);
-  const data = PrintList(page, count, count_p, headers, dispatch);
-
-  const onRemove = (id) => {
-    let body = {
-      id: id,
-    };
-
-    dispatch(notedelete(headers, body)).then((res) => {
-      setCount(count + 1);
-    });
-  };
+  const data = PrintList(page, count, count_p, headers, dispatch, navigate);
 
   return (
     <>
@@ -80,7 +90,7 @@ const Note = () => {
           <h3>메모 추가</h3>
         </button>
 
-        <NoteList notes={data[0]} onRemove={onRemove} />
+        <NoteList notes={data[0]} />
 
         <Pagination
           total={data[1]}

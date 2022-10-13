@@ -1,10 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
-import { getCookie } from "../util/cookie";
+import { useEffect, useState } from "react";
+import { getCookie, removeCookie } from "../util/cookie";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { noteedit, noteedit2 } from "../modules/userAction";
+import { noteedit, noteedit2, TimeSet } from "../modules/userAction";
 import { useDispatch } from "react-redux";
+import { setLogout } from "../modules/Logincheck";
 
 const EditBoard = () => {
   const navigate = useNavigate();
@@ -22,11 +23,18 @@ const EditBoard = () => {
   };
 
   useEffect(() => {
-    dispatch(noteedit(id, headers)).then((res) => {
-      SetTitle(res.payload.title);
-      SetContent(res.payload.content);
-      SetimporColor(res.payload.importance);
-    });
+    if (dispatch(TimeSet).payload) {
+      removeCookie("username");
+      dispatch(setLogout());
+      navigate("/Login");
+      alert("로그인 세션이 종료되었습니다.");
+    } else {
+      dispatch(noteedit(id, headers)).then((res) => {
+        SetTitle(res.payload.title);
+        SetContent(res.payload.content);
+        SetimporColor(res.payload.importance);
+      });
+    }
   }, []);
 
   const onChangeTitle = (e) => {

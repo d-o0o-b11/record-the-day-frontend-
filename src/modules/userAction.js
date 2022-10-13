@@ -1,6 +1,4 @@
 import { request, requestSignup, requestDATA } from "../util/axios";
-import { removeCookie } from "../util/cookie";
-import { setLogout } from "../modules/Logincheck";
 
 //회원가입
 export const registerUser = (dataToSubmit) => async (dispatch) => {

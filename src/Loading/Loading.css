@@ -1,0 +1,22 @@
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* 위쪽면만 색 다르게 */
+  border-radius: 50%; /*원*/
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite; /*2초동안 끊김없이*/
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  /*한바퀴 돌기*/
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

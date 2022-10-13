@@ -3,10 +3,11 @@ import "./NoteInsert.css";
 import icon3 from "../img/icon3.png";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { getCookie } from "../util/cookie";
+import { getCookie, removeCookie } from "../util/cookie";
 import { useNavigate } from "react-router-dom";
-import { noteinsert } from "../modules/userAction";
+import { noteinsert, TimeSet } from "../modules/userAction";
 import { useDispatch } from "react-redux";
+import { setLogout } from "../modules/Logincheck";
 
 const NoteInsert = () => {
   const token = getCookie("token");
@@ -34,27 +35,34 @@ const NoteInsert = () => {
   };
 
   const onInsertList = () => {
-    if (title === "") {
-      return alert("제목을 입력해주세요");
-    } else if (content === "") {
-      return alert("내용을 입력해주세요");
-    } else if (impoColor === "") {
-      return alert("중요도를 선택해주세요");
+    if (dispatch(TimeSet).payload) {
+      removeCookie("username");
+      dispatch(setLogout());
+      navigate("/Login");
+      alert("로그인 세션이 종료되었습니다.");
     } else {
-      let body = {
-        title: title,
-        content: content,
-        importance: impoColor,
-      };
+      if (title === "") {
+        return alert("제목을 입력해주세요");
+      } else if (content === "") {
+        return alert("내용을 입력해주세요");
+      } else if (impoColor === "") {
+        return alert("중요도를 선택해주세요");
+      } else {
+        let body = {
+          title: title,
+          content: content,
+          importance: impoColor,
+        };
 
-      dispatch(noteinsert(headers, body)).then((res) => {
-        if (res.payload.id > 0) {
-          alert("글이 작성되었습니다.");
-          navigate("/Note");
-        } else {
-          alert("글 작성 실패, 다시 시도해주세요.");
-        }
-      });
+        dispatch(noteinsert(headers, body)).then((res) => {
+          if (res.payload.id > 0) {
+            alert("글이 작성되었습니다.");
+            navigate("/Note");
+          } else {
+            alert("글 작성 실패, 다시 시도해주세요.");
+          }
+        });
+      }
     }
   };
 

@@ -9,10 +9,10 @@ import Template from "./ToDoList/Template";
 import Note from "./Note/Note";
 import NoteDetail from "./Note/NoteDetail";
 import EditNote from "./Note/EditNote";
+import Loading from "./Loading/Loading";
 
 import { Mobile, Pc } from "../src/Media/MediaQuery";
 import NoteInsert from "./Note/NoteInsert";
-import Test from "./test";
 
 const App = () => {
   return (
@@ -49,7 +49,7 @@ const App = () => {
 
         <Route path="/edit/:id" element={<EditNote />} />
 
-        <Route path="/test" element={<Test />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </BrowserRouter>
   );

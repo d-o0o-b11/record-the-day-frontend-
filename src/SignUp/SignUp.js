@@ -4,6 +4,7 @@ import icon6 from "../img/icon6.png";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../modules/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "../Loading/Loading";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,11 @@ const SignUp = () => {
 
   const [PasswordCheck, SetPasswordCheck] = useState(true);
   const [EmailCheck, SetEmailCheck] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  });
 
   useEffect(() => {
     // console.log('이메일 유효성 검사 :: ',EmailCheck)
@@ -37,10 +43,9 @@ const SignUp = () => {
     SetNickname(e.target.value);
   };
 
-  const onKeyPress = (e) =>{
-    if(e.key==='Enter')
-        submit();
-  }
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") submit();
+  };
 
   const navigate = useNavigate();
   // const Indexid = useSelector((state)=>state.userAction.register)
@@ -70,62 +75,76 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup_frame">
-      <div className="icon_marg">
-        <img src={icon6} />
-      </div>
-
-      <h1>회원가입</h1>
-
-      <div>
-        <input
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={onChangeEmail}
-        />
-      </div>
-      {EmailCheck ? (
-        <></>
+    <>
+      {loading ? (
+        <Loading />
       ) : (
-        <h5
-          style={{ color: "gray", margin: "0 0 20px 0", fontStyle: "italic" }}>
-          이메일 형식이 올바르지 않습니다.
-        </h5>
-      )}
-      <div>
-        <input
-          id="password"
-          name="Password"
-          type="password"
-          placeholder="PassWord"
-          onChange={onChangePassword}
-        />
-      </div>
-      {PasswordCheck ? (
-        <></>
-      ) : (
-        <h5
-          style={{ color: "gray", margin: "0 0 20px 0", fontStyle: "italic" }}>
-          영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 6자 ~
-          20자여야 합니다.
-        </h5>
-      )}
+        <div className="signup_frame">
+          <div className="icon_marg">
+            <img src={icon6} />
+          </div>
 
-      <div>
-        <input
-          id="nickname"
-          name="nickname"
-          placeholder="NickName"
-          onChange={onChangeNickname}
-          onKeyPress={onKeyPress}
-        />
-      </div>
+          <h1>회원가입</h1>
 
-      <button onClick={submit}>
-        <h3>SignUp</h3>
-      </button>
-    </div>
+          <div>
+            <input
+              id="email"
+              name="email"
+              placeholder="Email"
+              onChange={onChangeEmail}
+            />
+          </div>
+          {EmailCheck ? (
+            <></>
+          ) : (
+            <h5
+              style={{
+                color: "gray",
+                margin: "0 0 20px 0",
+                fontStyle: "italic",
+              }}>
+              이메일 형식이 올바르지 않습니다.
+            </h5>
+          )}
+          <div>
+            <input
+              id="password"
+              name="Password"
+              type="password"
+              placeholder="PassWord"
+              onChange={onChangePassword}
+            />
+          </div>
+          {PasswordCheck ? (
+            <></>
+          ) : (
+            <h5
+              style={{
+                color: "gray",
+                margin: "0 0 20px 0",
+                fontStyle: "italic",
+              }}>
+              영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 6자 ~
+              20자여야 합니다.
+            </h5>
+          )}
+
+          <div>
+            <input
+              id="nickname"
+              name="nickname"
+              placeholder="NickName"
+              onChange={onChangeNickname}
+              onKeyPress={onKeyPress}
+            />
+          </div>
+
+          <button onClick={submit}>
+            <h3>SignUp</h3>
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 
