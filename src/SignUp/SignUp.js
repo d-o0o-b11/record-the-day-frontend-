@@ -18,7 +18,7 @@ const SignUp = () => {
 
   useEffect(() => {
     setLoading(false);
-  });
+  }, []);
 
   useEffect(() => {
     // console.log('이메일 유효성 검사 :: ',EmailCheck)
@@ -63,6 +63,7 @@ const SignUp = () => {
         password: Password,
         nickname: Nickname,
       };
+      setLoading(true);
       dispatch(registerUser(body)).then((res) => {
         if (res.payload.id > 0) {
           alert("회원가입이 완료되었습니다.");

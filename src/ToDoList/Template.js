@@ -16,6 +16,7 @@ import {
 import { setLogout } from "../modules/Logincheck";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 const PrintList = (page, count, count_p, headers, dispatch, navigate) => {
   const [data, setData] = useState([]);
@@ -70,6 +71,12 @@ const Template = () => {
 
   const data = PrintList(page, count, count_p, headers, dispatch, navigate);
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   const [insertToggle, setInertToggle] = useState(false);
 
   const onInsertToggle = () => {
@@ -84,9 +91,11 @@ const Template = () => {
       let body = {
         content: text,
       };
-
+      //로딩화면 체크
+      setLoading(true);
       dispatch(todoinsert(headers, body)).then((res) => {
         setCount(count + 1);
+        setLoading(false);
       });
     }
   };
@@ -113,39 +122,43 @@ const Template = () => {
 
   return (
     <>
-      <div className="todolist_frame">
-        <div className="todolist_icon_marg">
-          <img src={icon8} />
-        </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="todolist_frame">
+          <div className="todolist_icon_marg">
+            <img src={icon8} />
+          </div>
 
-        <h1>To Do List </h1>
+          <h1>To Do List </h1>
 
-        {insertToggle && (
-          <ToDoInsert
-            onInsertToggle={onInsertToggle}
-            onInsertTodo={onInsertTodo}
+          {insertToggle && (
+            <ToDoInsert
+              onInsertToggle={onInsertToggle}
+              onInsertTodo={onInsertTodo}
+            />
+          )}
+
+          <button onClick={onInsertToggle} className="main_listbtn">
+            <h3>일정 추가</h3>
+          </button>
+
+          <h3>오늘의 할 일 - {data[1]}</h3>
+          <ToDoList
+            todos={data[0]}
+            onCheckToggle={onCheckToggle}
+            onRemove={onRemove}
           />
-        )}
 
-        <button onClick={onInsertToggle} className="main_listbtn">
-          <h3>일정 추가</h3>
-        </button>
-
-        <h3>오늘의 할 일 - {data[1]}</h3>
-        <ToDoList
-          todos={data[0]}
-          onCheckToggle={onCheckToggle}
-          onRemove={onRemove}
-        />
-
-        <Pagination
-          total={data[1]}
-          limit="9"
-          page={page}
-          setPage={setPage}
-          setcount_p={setCount_p}
-        />
-      </div>
+          <Pagination
+            total={data[1]}
+            limit="9"
+            page={page}
+            setPage={setPage}
+            setcount_p={setCount_p}
+          />
+        </div>
+      )}
     </>
   );
 };

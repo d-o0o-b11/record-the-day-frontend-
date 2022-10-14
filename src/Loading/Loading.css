@@ -20,3 +20,62 @@
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
+.loading_frame {
+  margin: 0 auto;
+}
+
+.loading_body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background: #333; */
+  background: #e4e0d5;
+}
+
+.loading_body h1 {
+  font-size: 2rem;
+  color: #5e503f;
+  position: relative;
+}
+
+.loading_body h1::before {
+  content: attr(data-text);
+  color: #c7ad92;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  overflow: hidden;
+  width: 100%;
+  animation: loading 2s ease infinite;
+}
+
+.loading_body h1::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  background: white;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  animation: loadingLine 2s ease infinite;
+}
+
+@keyframes loading {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes loadingLine {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}

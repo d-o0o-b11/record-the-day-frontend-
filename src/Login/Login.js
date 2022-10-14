@@ -16,7 +16,7 @@ const Login = () => {
 
   useEffect(() => {
     setLoading(false);
-  });
+  }, []);
 
   const [account, setAccount] = useState({
     email: "",
@@ -48,7 +48,7 @@ const Login = () => {
         email: account.email,
         password: account.password,
       };
-
+      setLoading(true);
       dispatch(loginUser(body)).then((res) => {
         if (res.payload.nickname) {
           setCookie("token", res.payload.token); // 쿠키에 토큰 저장
