@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../modules/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading/Loading";
+import SingupFin from "../Signup_fin/SignupFin";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -66,9 +67,10 @@ const SignUp = () => {
       setLoading(true);
       dispatch(registerUser(body)).then((res) => {
         if (res.payload.id > 0) {
-          alert("회원가입이 완료되었습니다.");
-          navigate("/Login");
+          setLoading(false);
+          navigate("/SignupFin");
         } else {
+          setLoading(false);
           alert(res.payload);
         }
       });

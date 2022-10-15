@@ -9,7 +9,7 @@ import Template from "./ToDoList/Template";
 import Note from "./Note/Note";
 import NoteDetail from "./Note/NoteDetail";
 import EditNote from "./Note/EditNote";
-import Loading from "./Loading/Loading";
+import SignupFin from "./Signup_fin/SignupFin";
 
 import { Mobile, Pc } from "../src/Media/MediaQuery";
 import NoteInsert from "./Note/NoteInsert";
@@ -49,7 +49,7 @@ const App = () => {
 
         <Route path="/edit/:id" element={<EditNote />} />
 
-        <Route path="/loading" element={<Loading />} />
+        <Route path="/SignupFin" element={<SignupFin />} />
       </Routes>
     </BrowserRouter>
   );
