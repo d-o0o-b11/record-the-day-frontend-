@@ -59,6 +59,7 @@ const Login = () => {
           dispatch(setLogin());
           dispatch(goToHome(navigate));
         } else {
+          setLoading(false);
           alert(res.payload);
         }
       });

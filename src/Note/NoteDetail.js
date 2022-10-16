@@ -5,6 +5,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { notedetail, notedelete, TimeSet } from "../modules/userAction";
 import { useDispatch } from "react-redux";
 import { setLogout } from "../modules/Logincheck";
+import Loading from "../Loading/Loading";
 
 const PrintList = (headers, id, dispatch, navigate) => {
   const [data, setData] = useState([]);
@@ -35,6 +36,12 @@ const NoteDetail = () => {
   const token = getCookie("token");
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   let headers = {
     AccessToken: token,
   };
@@ -56,25 +63,31 @@ const NoteDetail = () => {
 
   return (
     <>
-      <div className="notedetail_frame">
-        <h1>제목: {data.title}</h1>
-        <hr />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="notedetail_frame">
+            <h1>제목: {data.title}</h1>
+            <hr />
 
-        <h3 dangerouslySetInnerHTML={{ __html: data.content }}></h3>
-      </div>
+            <h3 dangerouslySetInnerHTML={{ __html: data.content }}></h3>
+          </div>
 
-      <div className="notedetail_frame2">
-        <button style={{ cursor: "pointer" }}>
-          <Link
-            to={`/edit/${id}`}
-            style={{ textDecoration: "none", color: "black" }}>
-            수정
-          </Link>
-        </button>
-        <button onClick={onRemove} style={{ cursor: "pointer" }}>
-          삭제
-        </button>
-      </div>
+          <div className="notedetail_frame2">
+            <button style={{ cursor: "pointer" }}>
+              <Link
+                to={`/edit/${id}`}
+                style={{ textDecoration: "none", color: "black" }}>
+                수정
+              </Link>
+            </button>
+            <button onClick={onRemove} style={{ cursor: "pointer" }}>
+              삭제
+            </button>
+          </div>
+        </>
+      )}
     </>
   );
 };

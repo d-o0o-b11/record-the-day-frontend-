@@ -104,9 +104,10 @@ const Template = () => {
     let body = {
       id: id,
     };
-
+    setLoading(true);
     dispatch(todocheck(headers, body)).then((res) => {
       setCount(count + 1);
+      setLoading(false);
     });
   };
 
@@ -114,9 +115,10 @@ const Template = () => {
     let body = {
       id: id,
     };
-
+    setLoading(true);
     dispatch(todoremove(headers, body)).then((res) => {
       setCount(count + 1);
+      setLoading(false);
     });
   };
 
