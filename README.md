@@ -1,4 +1,4 @@
-#제목 - 하루를 기록하다
+# 제목 - 하루를 기록하다 Record-The-Day Project
 
 
 소개
@@ -7,11 +7,6 @@
 > 그래서 이 프로젝트를 만듦으로써 오늘 할 일 , 중요도에 따른 노트를 기록할 수 있는 기능을 구현하고자 아이디어를 생각했습니다.
 <br>
 <br>
-
-기술 스택
-> Frontend - React
-> 
-> Backend - Spring Boot
 
 <br>
 <br>
@@ -30,27 +25,7 @@
 실행주소
 > https://todolist-b3d69.web.app/ 
 
-# Record-The-Day-Backend- <br><br> Record-The-Day Project
 
-## 빌드 환경
-    git clone https://github.com/cloudwi/record-the-day-backend-.git
-- IDE 환경 (인텔리제이)
-  - IDE open : record-the-day-backend-
-- Local 환경
-  - java 17 version 없을 때 [JAVA 17](https://www.oracle.com/java/technologies/downloads/#java17) 설치 필요
-  - `cd record-the-day-backend-`
-  - [macOS] : `./gradlew build`
-  - [window] : `./gradlew.bat build`
-  - `java -jar hello-spring-0.0.1-SNAPSHOT.jar`
-
-<br>
-
-## api-docs
-
-[Swagger](https://cloudwi.herokuapp.com/swagger-ui)
-- Explore : `/api-docs` 
-
-<br>
 
 ## 개발 환경
 
