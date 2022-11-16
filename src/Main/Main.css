@@ -1,36 +1,37 @@
-.main_svg svg{
-    fill: none;
-    width: 600px;
-    stroke-width: 3px;
+.main_svg svg {
+  fill: none;
+  width: 600px;
+  stroke-width: 3px;
 }
 
-path{
-    stroke: #000;
-    stroke-dasharray: var(--length);
-    stroke-dashoffset: var(--length);
-    animation: path var(--duration) forwards;
-    animation-delay: var(--delay);
+path {
+  stroke: #000;
+  stroke-dasharray: var(--length);
+  stroke-dashoffset: var(--length);
+  animation: path var(--duration) forwards;
+  animation-delay: var(--delay);
 }
 
-@keyframes path{
-    100%{stroke-dashoffset: 0;}
+@keyframes path {
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
-.main_img{
-    width: 700px;
-    /* display: inline-block; */
-    padding: 50px 50px 0px 0px;
+.main_img {
+  width: 700px;
+  /* display: inline-block; */
+  padding: 50px 50px 0px 0px;
 }
 
-.main_svg{
-    width: 660px;
-    height: 45%;
+.main_svg {
+  width: 660px;
+  height: 45%;
 }
 
-
-@font-face { 
-    font-family: "gmarket"; 
-    src: url("../font/Gmarket.ttf");
+@font-face {
+  font-family: "gmarket";
+  src: url("../font/Gmarket.ttf");
 }
 
 h1,
@@ -40,113 +41,103 @@ h4,
 h5,
 h6,
 li {
-    font-family: "gmarket", sans-serif, "Times New Roman",
-      serif;
+  font-family: "gmarket", sans-serif, "Times New Roman", serif;
 }
 
-.main_font_mg{
-    margin-top: 80px;
-    text-align: center;
-    /* padding-left: 30px; */
-    font-size: 0.8em;
+.main_font_mg {
+  margin-top: 80px;
+  text-align: center;
+  /* padding-left: 30px; */
+  font-size: 0.8em;
 }
 
-.main_font_mg :nth-child(2){
-    margin-top: 50px;
+.main_font_mg :nth-child(2) {
+  margin-top: 50px;
 }
 
 /* .main_font{
     font-size: 40px;
 } */
 
-.main_img2{
-    width: 580px;
-    margin-left: 60px;
-    position: relative;
-    top: 17px;
-    
+.main_img2 {
+  width: 580px;
+  margin-left: 60px;
+  position: relative;
+  top: 17px;
 }
 
-.main_container{
-    /* padding: 0 50px 0 50px; */
-    width: 90%;
-    max-width: 1490px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-gap: 20px;
-    padding-bottom: 100px;
+.main_container {
+  /* padding: 0 50px 0 50px; */
+  width: 90%;
+  max-width: 1490px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  padding-bottom: 100px;
 }
 
-.main_img2_size{
-    width: 625px;
-    height: 760px;
+.main_img2_size {
+  width: 625px;
+  height: 760px;
 }
 
 /* Teb */
-@media screen and (max-width:1300px) {
-    .main_container{
-        grid-template-columns: 1fr;
-        grid-gap: 100px;
-    }
-    .main_img{
-        width: 660px;
-        margin: 0 auto;
-        padding: 50px 0 0 0;
-    }
-    .main_font_mg{
-        margin-top: 150px;
-    }
-    .main_img2{
-        width:553px;
-        margin: 0 auto;
-    }
-    .main_img2_size{
-        width: 553px;
-        height: 635px;
-    }
-
+@media screen and (max-width: 1300px) {
+  .main_container {
+    grid-template-columns: 1fr;
+    grid-gap: 100px;
+  }
+  .main_img {
+    width: 660px;
+    margin: 0 auto;
+    padding: 50px 0 0 0;
+  }
+  .main_font_mg {
+    margin-top: 150px;
+  }
+  .main_img2 {
+    width: 553px;
+    margin: 0 auto;
+  }
+  .main_img2_size {
+    width: 553px;
+    height: 635px;
+  }
 }
 
 /* phone */
-@media screen and (max-width:700px) {
-    .main_container{
-        /* grid-template-columns: 1fr; */
-        grid-template-columns: 350px;
-    }
-    .main_img{
-        width: 350px;    
-        margin: 0 auto;
-    }
-    .main_svg{
-        width: 325px;
-        height: 248px;
-    }
-    .main_font{
-        font-size: 1.5em;
-    }
-    .main_img2{
-        width:340px;
-        margin: 0 auto;
-    }
-    .main_img2_size{
-        /* width: 363px;
-        height: 485px; */
-        width: 343px;
-        height: 463px;
-    }
-    .main_font_mg{
-        margin-top: 100px;
-        padding-left: 0;
-        width: 330px;
-        font-size: 0.8em;
-    }
+@media screen and (max-width: 700px) {
+  .main_img {
+    width: 350px;
+    margin: 0 auto;
+  }
+  .main_svg {
+    width: 325px;
+    height: 248px;
+  }
+  .main_font {
+    font-size: 1.5em;
+  }
+  .main_img2 {
+    width: 340px;
+    margin: 0 auto;
+  }
+  .main_img2_size {
+    width: 343px;
+    height: 463px;
+  }
+  .main_font_mg {
+    margin-top: 100px;
+    padding-left: 0;
+    font-size: 0.8em;
+    text-align: left;
+  }
 }
 
-@media screen and (min-width:1301px) {
-    .main_container{
-        grid-template-columns: 1fr 1fr;
-    }
+@media screen and (min-width: 1301px) {
+  .main_container {
+    grid-template-columns: 1fr 1fr;
+  }
 }
-

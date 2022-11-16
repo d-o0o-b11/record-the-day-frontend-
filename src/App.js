@@ -10,6 +10,7 @@ import Note from "./Note/Note";
 import NoteDetail from "./Note/NoteDetail";
 import EditNote from "./Note/EditNote";
 import SignupFin from "./Signup_fin/SignupFin";
+import Maincheck from "./Main/Maincheck";
 
 import { Mobile, Pc } from "../src/Media/MediaQuery";
 import NoteInsert from "./Note/NoteInsert";
@@ -29,7 +30,7 @@ const App = () => {
 
       <Routes>
         {/* 메인 */}
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Maincheck />} />
 
         {/* 로그인 */}
         <Route path="/Login" element={<Login />} />

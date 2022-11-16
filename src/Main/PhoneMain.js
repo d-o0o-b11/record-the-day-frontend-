@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
+import "./PhoneMain.css";
 import "./Main.css";
-import Main_img from "../img/main.png";
 
-const Main = () => {
+const PhoneMain = () => {
   useEffect(() => {
     const mainGroup = document.querySelector(".svg-main");
     const mainPaths = mainGroup.querySelectorAll("path");
@@ -15,7 +15,7 @@ const Main = () => {
   });
 
   return (
-    <div className="main_container">
+    <>
       <div className="main_img">
         <svg
           className="main_svg"
@@ -30,21 +30,16 @@ const Main = () => {
             />
           </g>
         </svg>
-
-        <div className="main_font_mg">
-          <h1 className="main_font">함께 중요한 사항을 필기해보세요!!</h1>
-          <h2>수업시간에 들은 내용들을 어떻게 정리하고 계신가요?</h2>
-          <h2>여러군데에 나눠져 필기되어 있으시다면 이용해보세요</h2>
-          <h2>모든 내용을 한 눈에 보기 쉽게 정리할 수 있어요!</h2>
-        </div>
       </div>
 
-      <div className="main_img2">
-        {/* <h1>이렇게 활용해보세요!</h1> */}
-        <img src={Main_img} className="main_img2_size" />
+      <div className="main_font_mg phonemain_font_mg">
+        <h1 className="main_font">함께 중요한 사항을 필기해보세요!!</h1>
+        <h2>수업시간에 들은 내용들을 어떻게 정리하고 계신가요?</h2>
+        <h2>여러군데에 나눠져 필기되어 있으시다면 이용해보세요</h2>
+        <h2>모든 내용을 한 눈에 보기 쉽게 정리할 수 있어요!</h2>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Main;
+export default PhoneMain;
