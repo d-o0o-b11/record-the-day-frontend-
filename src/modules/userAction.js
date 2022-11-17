@@ -4,7 +4,7 @@ import { request, requestSignup, requestDATA } from "../util/axios";
 export const registerUser = (dataToSubmit) => async (dispatch) => {
   const response = await requestSignup(
     "post",
-    "http://kzepnbmlhv.us15.qoddiapp.com/member",
+    "http://qygmknafdl.us15.qoddiapp.com/member",
     dataToSubmit
   );
   return { type: "REGISTER_USER", payload: response };
@@ -14,7 +14,7 @@ export const registerUser = (dataToSubmit) => async (dispatch) => {
 export const loginUser = (dataToSubmit) => async (dispatch) => {
   const response = await requestSignup(
     "post",
-    "http://kzepnbmlhv.us15.qoddiapp.com/member/login",
+    "http://qygmknafdl.us15.qoddiapp.com/member/login",
     dataToSubmit
   );
   return { type: "LOGIN_USER", payload: response };
@@ -24,7 +24,7 @@ export const loginUser = (dataToSubmit) => async (dispatch) => {
 export const todolist = (page, headers) => async (dispatch) => {
   const response = await request(
     "get",
-    `http://kzepnbmlhv.us15.qoddiapp.com/todo?page=${page}`,
+    `http://qygmknafdl.us15.qoddiapp.com/todo?page=${page}`,
     headers
   );
   return { type: "TODOLIST", payload: response };
@@ -33,7 +33,7 @@ export const todolist = (page, headers) => async (dispatch) => {
 export const todoinsert = (headers, dataToSubmit) => async (dispatch) => {
   const response = await requestDATA(
     "post",
-    `http://kzepnbmlhv.us15.qoddiapp.com/todo`,
+    `http://qygmknafdl.us15.qoddiapp.com/todo`,
     headers,
     dataToSubmit
   );
@@ -43,7 +43,7 @@ export const todoinsert = (headers, dataToSubmit) => async (dispatch) => {
 export const todolistPage = (headers) => async (dispatch) => {
   const response = await request(
     "get",
-    "http://kzepnbmlhv.us15.qoddiapp.com/todo/count",
+    "http://qygmknafdl.us15.qoddiapp.com/todo/count",
     headers
   );
   return { type: "TODOLISTPAGE", payload: response };
@@ -52,7 +52,7 @@ export const todolistPage = (headers) => async (dispatch) => {
 export const todocheck = (headers, dataToSubmit) => async (dispatch) => {
   const response = await requestDATA(
     "put",
-    "http://kzepnbmlhv.us15.qoddiapp.com/todo",
+    "http://qygmknafdl.us15.qoddiapp.com/todo",
     headers,
     dataToSubmit
   );
@@ -62,7 +62,7 @@ export const todocheck = (headers, dataToSubmit) => async (dispatch) => {
 export const todoremove = (headers, dataToSubmit) => async (dispatch) => {
   const response = await requestDATA(
     "delete",
-    "http://kzepnbmlhv.us15.qoddiapp.com/todo",
+    "http://qygmknafdl.us15.qoddiapp.com/todo",
     headers,
     dataToSubmit
   );
@@ -73,7 +73,7 @@ export const todoremove = (headers, dataToSubmit) => async (dispatch) => {
 export const notelist = (page, headers) => async (dispatch) => {
   const response = await request(
     "get",
-    `http://kzepnbmlhv.us15.qoddiapp.com/note?page=${page}`,
+    `http://qygmknafdl.us15.qoddiapp.com/note?page=${page}`,
     headers
   );
   return { type: "NOTELIST", payload: response };
@@ -82,7 +82,7 @@ export const notelist = (page, headers) => async (dispatch) => {
 export const notedelete = (headers, dataToSubmit) => async (dispatch) => {
   const response = await requestDATA(
     "delete",
-    "http://kzepnbmlhv.us15.qoddiapp.com/note",
+    "http://qygmknafdl.us15.qoddiapp.com/note",
     headers,
     dataToSubmit
   );
@@ -92,7 +92,7 @@ export const notedelete = (headers, dataToSubmit) => async (dispatch) => {
 export const notedetail = (id, headers) => async (dispatch) => {
   const response = await request(
     "get",
-    `http://kzepnbmlhv.us15.qoddiapp.com/note/${id}`,
+    `http://qygmknafdl.us15.qoddiapp.com/note/${id}`,
     headers
   );
   return { type: "NOTEDETAIL", payload: response };
@@ -101,7 +101,7 @@ export const notedetail = (id, headers) => async (dispatch) => {
 export const noteinsert = (headers, dataToSubmit) => async (dispatch) => {
   const response = await requestDATA(
     "post",
-    `http://kzepnbmlhv.us15.qoddiapp.com/note`,
+    `http://qygmknafdl.us15.qoddiapp.com/note`,
     headers,
     dataToSubmit
   );
@@ -111,7 +111,7 @@ export const noteinsert = (headers, dataToSubmit) => async (dispatch) => {
 export const noteedit = (id, headers) => async (dispatch) => {
   const response = await request(
     "get",
-    `http://kzepnbmlhv.us15.qoddiapp.com/note/${id}`,
+    `http://qygmknafdl.us15.qoddiapp.com/note/${id}`,
     headers
   );
   return { type: "NOTEEDIT", payload: response };
@@ -120,7 +120,7 @@ export const noteedit = (id, headers) => async (dispatch) => {
 export const noteedit2 = (headers, dataToSubmit) => async (dispatch) => {
   const response = await requestDATA(
     "put",
-    `http://kzepnbmlhv.us15.qoddiapp.com/note`,
+    `http://qygmknafdl.us15.qoddiapp.com/note`,
     headers,
     dataToSubmit
   );
@@ -130,7 +130,7 @@ export const noteedit2 = (headers, dataToSubmit) => async (dispatch) => {
 export const notelistPage = (headers) => async (dispatch) => {
   const response = await request(
     "get",
-    "http://kzepnbmlhv.us15.qoddiapp.com/note/count",
+    "http://qygmknafdl.us15.qoddiapp.com/note/count",
     headers
   );
   return { type: "NOTELISTPAGE", payload: response };
