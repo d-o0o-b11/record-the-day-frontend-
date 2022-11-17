@@ -79,77 +79,79 @@ const MoHeader = () => {
       {toggleMenu && (
         <>
           <div className="menu_container">
-            <div className="check">
-              <div className="menu_sidebar">
-                <img
-                  src={cancel_btn}
-                  onClick={() => setToggleMenu(!toggleMenu)}
-                  className="cancel_btn"
-                />
-                <span className="area_desc">
-                  <Link
-                    to="/"
-                    className="link_color"
-                    onClick={() => setToggleMenu(!toggleMenu)}>
-                    <h2 className="yellow underline">Main</h2>
-                  </Link>
+            <div className="header_frame">
+              <div className="check">
+                <div className="menu_sidebar">
+                  <img
+                    src={cancel_btn}
+                    onClick={() => setToggleMenu(!toggleMenu)}
+                    className="cancel_btn"
+                  />
+                  <span className="area_desc">
+                    <Link
+                      to="/"
+                      className="link_color"
+                      onClick={() => setToggleMenu(!toggleMenu)}>
+                      <h2 className="yellow underline">Main</h2>
+                    </Link>
 
-                  <span
-                    to="/ToDoList"
-                    className="link_color"
-                    onClick={() => {
-                      setToggleMenu(!toggleMenu);
-                      Need_Login_todo();
-                    }}>
-                    <h2 className="yellow underline">To do List</h2>
+                    <span
+                      to="/ToDoList"
+                      className="link_color"
+                      onClick={() => {
+                        setToggleMenu(!toggleMenu);
+                        Need_Login_todo();
+                      }}>
+                      <h2 className="yellow underline">To do List</h2>
+                    </span>
+
+                    <span
+                      to="/Note"
+                      className="link_color"
+                      onClick={() => {
+                        setToggleMenu(!toggleMenu);
+                        Need_Login_note();
+                      }}>
+                      <h2 className="yellow underline">Note</h2>
+                    </span>
+
+                    {isLogin && (
+                      <>
+                        <h2 className="yellow underline">{uname}님</h2>
+                        <h2
+                          className="yellow underline"
+                          onClick={() => {
+                            logoutClick();
+                            setToggleMenu(!toggleMenu);
+                          }}>
+                          LogOut
+                        </h2>
+                      </>
+                    )}
+
+                    {isLogin || (
+                      <>
+                        <Link
+                          to="/Login"
+                          className="link_color"
+                          onClick={() => setToggleMenu(!toggleMenu)}>
+                          <h2 className="yellow underline">Login</h2>
+                        </Link>
+
+                        <Link
+                          to="/SignUp"
+                          className="link_color"
+                          onClick={() => setToggleMenu(!toggleMenu)}>
+                          <h2 className="yellow underline">Sing Up</h2>
+                        </Link>
+                      </>
+                    )}
                   </span>
+                </div>
 
-                  <span
-                    to="/Note"
-                    className="link_color"
-                    onClick={() => {
-                      setToggleMenu(!toggleMenu);
-                      Need_Login_note();
-                    }}>
-                    <h2 className="yellow underline">Note</h2>
-                  </span>
-
-                  {isLogin && (
-                    <>
-                      <h2 className="yellow underline">{uname}님</h2>
-                      <h2
-                        className="yellow underline"
-                        onClick={() => {
-                          logoutClick();
-                          setToggleMenu(!toggleMenu);
-                        }}>
-                        LogOut
-                      </h2>
-                    </>
-                  )}
-
-                  {isLogin || (
-                    <>
-                      <Link
-                        to="/Login"
-                        className="link_color"
-                        onClick={() => setToggleMenu(!toggleMenu)}>
-                        <h2 className="yellow underline">Login</h2>
-                      </Link>
-
-                      <Link
-                        to="/SignUp"
-                        className="link_color"
-                        onClick={() => setToggleMenu(!toggleMenu)}>
-                        <h2 className="yellow underline">Sing Up</h2>
-                      </Link>
-                    </>
-                  )}
-                </span>
-              </div>
-
-              <div className="menu_lo_frame">
-                <img src={logo} className="menu_logo" />
+                <div className="menu_lo_frame">
+                  <img src={logo} className="menu_logo" />
+                </div>
               </div>
             </div>
           </div>
