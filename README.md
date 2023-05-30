@@ -1,4 +1,4 @@
-# 제목 - 하루를 기록하다 Record-The-Day Project
+# 하루를 기록하다 Record-The-Day Project
 
 
 소개
