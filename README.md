@@ -12,9 +12,9 @@
 개선점
 <br>
   1. 보안적으로 취약한 webStorage 기능을 사용하지 않음
-  2. toekn 유효시간에 따른 로그인 제한  
+  2. token 유효시간에 따른 로그인 제한  
   3. 컴포넌트화 중심
-  4. 리액트 새로고침 이벤트 명령어 사용 금지
+  4. 리액트 새로고침 이벤트 명령어 사용 
 
 
 <br>
@@ -51,13 +51,10 @@
 
 <br>
 
-##GITHUB
+## GITHUB
 - Backend 배포 주소 [record-the-day-backend-](https://cloudwi.herokuapp.com/)
 - Frontend 배포 주소 [record-the-day-frontend-](https://todolist-b3d69.web.app/)
 
-
-## Backend 배포 주소 [record-the-day-backend-](https://cloudwi.herokuapp.com/)
-## Frontend 배포 주소 [record-the-day-frontend-](https://todolist-b3d69.web.app/)
 
 <br>
 
@@ -72,11 +69,12 @@
 
 ## 주요 개발
 
+- 반응형 웹 사이트
 - 로그인 및 회원가입 ( JWT token 인증 방식 )
 - Member, Todo, Note 연관관계 테이블 정의 CRUD 기능 탑재
-- Todo와 Note 페이지화 시켜서 응답
-- 커스텀 에러 타입 바탕으로 사용자 친화적으로 메시지 전달
-- validation 사용하여 요청 객체 검증과 에러 발생시 에러 메시지 전달
+- 랜딩 페이지 
+- redux 상태 관리 
+- Member, Todo, Note 연관관계 테이블 정의 CRUD 기능 탑재
 - github action, Heroku, firebase 활용 배포 자동화
 - swagger api-docs 확인
 
@@ -86,7 +84,7 @@
 
 FRONT-END : [차지민 gitLink](https://github.com/d-o0o-b11)
 
-BACK-END : [장주영 gitLink](https://github.com/cloudwi) /
+BACK-END : [장주영 gitLink](https://github.com/cloudwi) 
 
 <br>
 
