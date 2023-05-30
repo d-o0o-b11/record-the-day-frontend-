@@ -51,6 +51,11 @@
 
 <br>
 
+##GITHUB
+- Backend 배포 주소 [record-the-day-backend-](https://cloudwi.herokuapp.com/)
+- Frontend 배포 주소 [record-the-day-frontend-](https://todolist-b3d69.web.app/)
+
+
 ## Backend 배포 주소 [record-the-day-backend-](https://cloudwi.herokuapp.com/)
 ## Frontend 배포 주소 [record-the-day-frontend-](https://todolist-b3d69.web.app/)
 
